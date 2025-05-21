@@ -21,8 +21,8 @@
 </ul>
 
 <h3>Required:</h3>
-<ol>
+<ul>
   <li>Babel<li>
-  <li>default npm<li>
+  <li>npm packages<li>
   <li>npm-router-dom<li> 
-</ol>
+</ul>
