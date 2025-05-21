@@ -1,0 +1,18 @@
+body {
+  background-color: #FDD1A1;
+  font-family: "Arial", sans-serif;
+}
+
+.main-content {
+  margin-left: 250px; /* Ширина сайдбара */
+  padding: 30px;
+  min-height: 100vh;
+  background-color: #FDD1A1;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 60px;
+    padding: 15px;
+  }
+}
