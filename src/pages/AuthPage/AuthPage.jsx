@@ -149,14 +149,14 @@ export default function AuthPage() {
               <div className="general-error">{errors.general}</div>
             )}
 
-            {/* Кнопка Google */}
+            {/* Кнопка VK */}
             <button type="button" className="auth-google-button">
               <img 
                 className="auth-google-icon" 
-                src="/assets/img/google-icon.svg" 
+                src="/assets/img/vk-icon.svg" 
                 alt="Google" 
               />
-              Продолжить с <b>Google</b>
+              Продолжить с <b>VK ID</b>
             </button>
           </div>
         </form>
