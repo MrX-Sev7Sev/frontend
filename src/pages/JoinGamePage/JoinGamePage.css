@@ -61,3 +61,115 @@
   padding: 2rem;
   color: #7f8c8d;
 }
+
+.search-and-filters {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.search-container {
+  flex: 1;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #E2B07A;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #FFF9F5;
+  transition: all 0.3s ease;
+}
+
+.search-container input:focus {
+  outline: none;
+  border-color: #CC7951;
+  box-shadow: 0 0 0 3px rgba(204, 121, 81, 0.2);
+}
+
+.filter-icon {
+  cursor: pointer;
+  padding: 0.8rem;
+  background: #CC7951;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-icon img {
+  width: 24px;
+  height: 24px;
+}
+
+.filter-dropdown {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: #FFF2EA;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #943D2C;
+}
+
+.filter-group select,
+.filter-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #E2B07A;
+  border-radius: 6px;
+  background: #FFF9F5;
+  font-size: 0.9rem;
+}
+
+.games-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.games-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.games-table th,
+.games-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #E2B07A;
+}
+
+.games-table th {
+  background: #FCDDCB;
+  font-weight: 600;
+  color: #943D2C;
+}
+
+.creator-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.creator-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.no-games {
+  text-align: center;
+  padding: 2rem;
+  color: #7f8c8d;
+}

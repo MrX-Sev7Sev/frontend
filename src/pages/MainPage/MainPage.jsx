@@ -6,6 +6,7 @@ import NavigationSidebar from '../../components/NavigationSidebar';
 import './MainPage.css';
 
 export default function MainPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [games, setGames] = useState([]);
@@ -21,8 +22,45 @@ export default function MainPage() {
       title: 'Стратегии в шахматах',
       image: '/assets/articles/chess.jpg',
       link: '/articles/chess'
+    },
+    {
+      id: 3,
+      title: 'Как выиграть в Мафию',
+      image: '/assets/articles/mafia.jpg',
+      link: '/articles/mafia'
+    },
+    {
+      id: 4,
+      title: 'Секреты игры в Монополию',
+      image: '/assets/articles/monopoly.jpg',
+      link: '/articles/monopoly'
+    },
+    {
+      id: 5,
+      title: 'Тактики в Дженге',
+      image: '/assets/articles/jenga.jpg',
+      link: '/articles/jenga'
+    },
+    {
+      id: 6,
+      title: 'Как играть в Каркассон',
+      image: '/assets/articles/carcassonne.jpg',
+      link: '/articles/carcassonne'
     }
   ]);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex + 4 < articles.length ? prevIndex + 1 : prevIndex
+    );
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex > 0 ? prevIndex - 1 : prevIndex
+    );
+  };
+
 
   useEffect(() => {
     const updateGames = () => {
@@ -74,9 +112,18 @@ export default function MainPage() {
         </section>
 
         <section className="articles-section">
-          <h2 className="articles-title">Статьи</h2>
+        <h2 className="articles-title">Статьи</h2>
+        <div className="articles-gallery">
+          <button 
+            className="gallery-button prev-button" 
+            onClick={handlePrev}
+            disabled={currentIndex === 0}
+          >
+            ◀️
+          </button>
+                    
           <div className="articles-grid">
-            {articles.map(article => (
+            {articles.slice(currentIndex, currentIndex + 4).map(article => (
               <div 
                 key={article.id} 
                 className="article-card"
@@ -93,7 +140,16 @@ export default function MainPage() {
               </div>
             ))}
           </div>
-        </section>
+
+          <button 
+            className="gallery-button next-button" 
+            onClick={handleNext}
+            disabled={currentIndex + 3 >= articles.length}
+          >
+            ▶️
+          </button>
+        </div>
+      </section>
       </div>
     </div>
   );
