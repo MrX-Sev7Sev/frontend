@@ -77,20 +77,20 @@ export default function MainPage() {
           <h2 className="articles-title">Статьи</h2>
           <div className="articles-grid">
             {articles.map(article => (
-              <a 
+              <div 
                 key={article.id} 
-                href={article.link} 
                 className="article-card"
+                onClick={() => navigate(article.link)}
               >
-                <img 
-                  src={article.image} 
-                  alt={article.title} 
+                <div 
                   className="article-image"
-                />
-                <div className="article-overlay">
-                  <h3>{article.title}</h3>
+                  style={{ backgroundImage: `url(${article.image})` }}
+                >
+                  <div className="article-overlay">
+                    <h3>{article.title}</h3>
+                  </div>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </section>
