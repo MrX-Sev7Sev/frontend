@@ -15,7 +15,7 @@ const GAME_IMAGES = {
 export default function CreateGamePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
-  
+
   // Состояния формы
   const [formData, setFormData] = useState({
     name: '',
@@ -26,10 +26,13 @@ export default function CreateGamePage() {
     time: '',
     maxPlayers: 4
   });
-  
+
+  // Поле для ввода "Другое место"
+  const [customLocation, setCustomLocation] = useState('');
+
   // Показывать ли поле для кастомной игры
   const [showCustomGameInput, setShowCustomGameInput] = useState(false);
-  
+
   // Обработка изменения типа игры
   const handleGameTypeChange = (e) => {
     const value = e.target.value;
@@ -44,21 +47,28 @@ export default function CreateGamePage() {
   // Отправка формы
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
+    // Определяем тип игры
     const gameType = formData.type === 'custom' ? formData.customType : formData.type;
-    
+
+    // Определяем место проведения
+    const gameLocation = formData.location === 'other' ? customLocation : formData.location;
+
+    // Создаём новую игру
     const newGame = {
       id: Date.now(),
       ...formData,
       type: gameType,
+      location: gameLocation, // Используем пользовательское место, если выбрано
       admin: user.email,
       players: [user.email],
       date: new Date(`${formData.date}T${formData.time}`).toISOString()
     };
 
+    // Сохраняем игру
     const existingGames = JSON.parse(localStorage.getItem('games')) || [];
     const updatedGames = [...existingGames, newGame];
-    
+
     localStorage.setItem('games', JSON.stringify(updatedGames));
     navigate('/main');
   };
@@ -66,7 +76,7 @@ export default function CreateGamePage() {
   return (
     <div className="create-game-page">
       <h1>Создание игры</h1>
-      
+
       <form onSubmit={handleSubmit}>
         {/* Верхняя секция: изображение + название */}
         <div className="top-section">
@@ -77,13 +87,13 @@ export default function CreateGamePage() {
               className="game-image"
             />
           </div>
-          
+
           <div className="game-name-group">
             <label>Название комнаты</label>
             <input
               type="text"
               value={formData.name}
-              onChange={(e) => setFormData({...formData, name: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
               placeholder="Введите название игровой комнаты"
             />
@@ -103,13 +113,13 @@ export default function CreateGamePage() {
             <option value="Дженга">Дженга</option>
             <option value="custom">Добавить свою игру</option>
           </select>
-          
+
           {showCustomGameInput && (
             <div className="custom-game-input">
               <input
                 type="text"
                 value={formData.customType}
-                onChange={(e) => setFormData({...formData, customType: e.target.value})}
+                onChange={(e) => setFormData({ ...formData, customType: e.target.value })}
                 placeholder="Введите название игры"
                 required
               />
@@ -124,13 +134,13 @@ export default function CreateGamePage() {
             <input
               type="date"
               value={formData.date}
-              onChange={(e) => setFormData({...formData, date: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
               required
             />
             <input
               type="time"
               value={formData.time}
-              onChange={(e) => setFormData({...formData, time: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, time: e.target.value })}
               required
             />
           </div>
@@ -141,7 +151,7 @@ export default function CreateGamePage() {
           <label>Место проведения</label>
           <select
             value={formData.location}
-            onChange={(e) => setFormData({...formData, location: e.target.value})}
+            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
           >
             <option value="ГУК">Главный учебный корпус</option>
             <option value="РТФ">Радиотехнический корпус</option>
@@ -149,6 +159,18 @@ export default function CreateGamePage() {
             <option value="ИЕНиМ">Институт естественных наук</option>
             <option value="other">Другое место</option>
           </select>
+
+          {formData.location === 'other' && (
+            <div className="custom-location-input">
+              <input
+                type="text"
+                value={customLocation}
+                onChange={(e) => setCustomLocation(e.target.value)}
+                placeholder="Введите место проведения"
+                required
+              />
+            </div>
+          )}
         </div>
 
         {/* Количество участников */}
@@ -160,7 +182,7 @@ export default function CreateGamePage() {
               min="2"
               max="10"
               value={formData.maxPlayers}
-              onChange={(e) => setFormData({...formData, maxPlayers: e.target.value})}
+              onChange={(e) => setFormData({ ...formData, maxPlayers: e.target.value })}
             />
             <span className="players-count">{formData.maxPlayers} игроков</span>
           </div>
