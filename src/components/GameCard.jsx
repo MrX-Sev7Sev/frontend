@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import './GameCard.css';
 
 export default function GameCard({ game }) {
   if (!game?.id || !game?.name) return null;
@@ -10,6 +11,9 @@ export default function GameCard({ game }) {
     const images = {
       'Uno': '/assets/games/uno.jpg',
       'Шахматы': '/assets/games/chess.jpg',
+      'Монополия': '/assets/games/monopoly.jpg',
+      'Дженга': '/assets/games/jenga.jpg',
+      'Добавить свою игру': '/assets/games/custom.jpg', // Обрабатываем кастомные игры
       'default': '/assets/games/default.jpg'
     };
     return images[type] || images.default;
@@ -23,7 +27,7 @@ export default function GameCard({ game }) {
         className="game-card-image"
       />
       <div className="game-card-overlay">
-        <h3>{game.name}</h3>
+        <h3 className="game-card-title">{game.name}</h3>
         <div className="game-card-info">
           {isAdmin && <span className="admin-badge">Админ</span>}
           <span>{game.players.length}/{game.maxPlayers} игроков</span>
