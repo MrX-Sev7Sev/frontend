@@ -57,13 +57,12 @@ export default function CreateGamePage() {
     // Создаём новую игру
     const newGame = {
       id: Date.now(),
-      name: 'Моя кастомная игра', // Здесь твоё название игры
-      type: 'Добавить свою игру', // Убедись, что тип именно такой
-      location: 'Москва',
-      date: new Date(),
+      ...formData,
+      type: gameType,
+      location: gameLocation, // Используем пользовательское место, если выбрано
       admin: user.email,
       players: [user.email],
-      maxPlayers: 10
+      date: new Date(`${formData.date}T${formData.time}`).toISOString()
     };
 
     // Сохраняем игру
