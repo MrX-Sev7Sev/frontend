@@ -11,11 +11,12 @@ export default function GameCard({ game }) {
     const images = {
       'Uno': '/assets/games/uno.jpg',
       'Шахматы': '/assets/games/chess.jpg',
-      'Монополия': '/assets/games/monopoly.jpg',
+      'Карты': '/assets/games/cards.jpg',
       'Дженга': '/assets/games/jenga.jpg',
-      'Добавить свою игру': '/assets/games/custom.jpg', // Обрабатываем кастомные игры
-      'default': '/assets/games/default.jpg'
+      'default': '/assets/games/custom.jpg' // Для всех остальных игр используем custom.jpg
     };
+
+    // Если тип игры не в списке, возвращаем custom.jpg
     return images[type] || images.default;
   };
 

@@ -18,6 +18,41 @@ export default function LobbyPage() {
   const [game, setGame] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    const loadGame = () => {
+      const games = GamesAPI.getAll();
+      const foundGame = games.find(g => g.id === Number(gameId));
+      
+      if (!foundGame) {
+        navigate('/main', { replace: true });
+        return;
+      }
+      
+      setGame(foundGame);
+      setIsLoading(false);
+    };
+
+    loadGame();
+    window.addEventListener('games-updated', loadGame);
+    
+    return () => {
+      window.removeEventListener('games-updated', loadGame);
+    };
+  }, [gameId, navigate]);
+
+  const getGameImage = (type) => {
+    const images = {
+      'Uno': '/assets/games/uno.jpg',
+      'Шахматы': '/assets/games/chess.jpg',
+      'Карты': '/assets/games/cards.jpg',
+      'Дженга': '/assets/games/jenga.jpg',
+      'default': '/assets/games/custom.jpg' // Для всех остальных игр используем custom.jpg
+    };
+
+    // Если тип игры не в списке, возвращаем custom.jpg
+    return images[type] || images.default;
+  };
+
   const handleDeleteGame = () => {
     const updatedGames = GamesAPI.getAll().filter(g => g.id !== Number(gameId));
     GamesAPI.save(updatedGames);
@@ -41,46 +76,23 @@ export default function LobbyPage() {
     navigate('/main');
   };
 
-  useEffect(() => {
-    const loadGame = () => {
-      const games = GamesAPI.getAll();
-      const foundGame = games.find(g => g.id === Number(gameId));
-      
-      if (!foundGame) {
-        navigate('/main', { replace: true });
-        return;
-      }
-      
-      setGame(foundGame);
-      setIsLoading(false);
-    };
-
-    loadGame();
-    window.addEventListener('games-updated', loadGame);
-    
-    return () => {
-      window.removeEventListener('games-updated', loadGame);
-    };
-  }, [gameId, navigate]);
-
-const getGameImage = (type) => {
-  const images = {
-    'Uno': '/assets/games/uno.jpg',
-    'Шахматы': '/assets/games/chess.jpg',
-    'Монополия': '/assets/games/monopoly.jpg',
-    'Дженга': '/assets/games/jenga.jpg',
-    'Добавить свою игру': '/assets/games/custom.jpg', // Обрабатываем кастомные игры
-    'default': '/assets/games/default.jpg'
-  };
-  return images[type] || images.default;
-};
-
   if (isLoading) {
     return (
       <div className="lobby-container">
         <NavigationSidebar />
         <div className="lobby-content">
           <h2>Загрузка данных игры...</h2>
+        </div>
+      </div>
+    );
+  }
+
+  if (!game) {
+    return (
+      <div className="lobby-container">
+        <NavigationSidebar />
+        <div className="lobby-content">
+          <h2>Игра не найдена</h2>
         </div>
       </div>
     );
@@ -98,6 +110,7 @@ const getGameImage = (type) => {
         </div>
 
         <div className="lobby-main">
+          {/* Секция с изображением и списком игроков */}
           <div className="lobby-avatar-section">
             <div className="game-avatar">
               <img 
@@ -105,26 +118,30 @@ const getGameImage = (type) => {
                 alt="Аватар игры" 
               />
             </div>
+            {/* Список игроков */}
             <h3>Участники</h3>
             <div className="players-list">
-              {game?.players?.map((player, index) => (
-                <div key={index} className="player-card">
-                  <img 
-                    src="/assets/img/default-avatar.png" 
-                    alt="Аватар игрока" 
-                    className="player-avatar"
-                  />
-                  <span className="player-name">
-                    {player}
-                    {game.admin === player && (
-                      <span className="admin-badge">👑 Создатель</span>
-                    )}
-                  </span>
-                </div>
-              ))}
+              {game?.players
+                ?.filter(player => player !== null) // Фильтруем null-игроков
+                ?.map((player, index) => (
+                  <div key={index} className="player-card">
+                    <img 
+                      src="/assets/img/avatar-default.png" // Дефолтная аватарка
+                      alt="Аватар игрока" 
+                      className="player-avatar"
+                    />
+                    <span className="player-name">
+                      {player || 'Неизвестный игрок'}
+                      {game.admin === player && (
+                        <span className="admin-badge">👑 Создатель</span>
+                      )}
+                    </span>
+                  </div>
+                ))}
             </div>
           </div>
 
+          {/* Секция с информацией о комнате */}
           <div className="lobby-info">
             <div className="info-item">
               <label>Название комнаты:</label>
@@ -157,6 +174,7 @@ const getGameImage = (type) => {
           </div>
         </div>
 
+        {/* Кнопки действий */}
         <div className="lobby-actions">
           {isAdmin ? (
             <button 

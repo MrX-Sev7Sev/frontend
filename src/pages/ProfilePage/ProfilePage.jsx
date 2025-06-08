@@ -27,7 +27,7 @@ export default function ProfilePage() {
             <div className="avatar-section">
               <div className="avatar-wrapper">
                 <img 
-                  src={avatar || '/assets/img/default-avatar.png'} 
+                  src={avatar || '/assets/img/avatar-default.png'} 
                   alt="Аватар" 
                   className="profile-avatar"
                 />
