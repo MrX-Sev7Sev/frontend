@@ -193,7 +193,7 @@ export default function JoinGamePage() {
                   <td>
                     <div className="creator-info">
                       <img 
-                        src={game.adminAvatar || '/assets/img/default-avatar.png'} 
+                        src={game.adminAvatar || '/assets/img/avatar-default.png'} 
                         alt="Создатель" 
                         className="creator-avatar"
                       />
