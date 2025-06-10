@@ -13,39 +13,123 @@ export default function MainPage() {
   const [articles] = useState([
     {
       id: 1,
-      title: 'Правила Uno',
+      title: 'Uno',
       image: '/assets/articles/uno.jpg',
       link: '/articles/uno'
     },
     {
       id: 2,
-      title: 'Стратегии в шахматах',
+      title: 'Шахматы',
       image: '/assets/articles/chess.jpg',
       link: '/articles/chess'
     },
     {
       id: 3,
-      title: 'Как выиграть в Мафию',
+      title: 'Мафия',
       image: '/assets/articles/mafia.jpg',
       link: '/articles/mafia'
     },
     {
       id: 4,
-      title: 'Секреты игры в Монополию',
+      title: 'Монополия',
       image: '/assets/articles/monopoly.jpg',
       link: '/articles/monopoly'
     },
     {
       id: 5,
-      title: 'Тактики в Дженге',
+      title: 'Дженга',
       image: '/assets/articles/jenga.jpg',
       link: '/articles/jenga'
     },
     {
       id: 6,
-      title: 'Как играть в Каркассон',
+      title: 'Каркассон',
       image: '/assets/articles/carcassonne.jpg',
       link: '/articles/carcassonne'
+    },
+    {
+      id: 7,
+      title: 'Dungeons & Dragons',
+      image: '/assets/articles/dnd.jpg',
+      link: '/articles/dnd'
+    },
+    {
+      id: 8,
+      title: 'Бункер',
+      image: '/assets/articles/bunker.jpg',
+      link: '/articles/bunker'
+    },
+    {
+      id: 9,
+      title: 'Эволюция',
+      image: '/assets/articles/evolution.jpg',
+      link: '/articles/evolution'
+    },
+    {
+      id: 10,
+      title: 'Диксит',
+      image: '/assets/articles/dixit.jpg',
+      link: '/articles/dixit'
+    },
+    {
+      id: 11,
+      title: 'Колонизаторы',
+      image: '/assets/articles/catan.jpg',
+      link: '/articles/catan'
+    },
+    {
+      id: 12,
+      title: 'Алиас',
+      image: '/assets/articles/alias.jpg',
+      link: '/articles/alias'
+    },
+    {
+      id: 13,
+      title: 'Манчкин',
+      image: '/assets/articles/munchkin.jpg',
+      link: '/articles/munchkin'
+    },
+    {
+      id: 14,
+      title: 'Кодовые имена',
+      image: '/assets/articles/codenames.jpg',
+      link: '/articles/codenames'
+    },
+    {
+      id: 15,
+      title: 'Скрэббл',
+      image: '/assets/articles/scrabble.jpg',
+      link: '/articles/scrabble'
+    },
+    {
+      id: 16,
+      title: 'Имаджинариум',
+      image: '/assets/articles/imaginarium.jpg',
+      link: '/articles/imaginarium'
+    },
+    {
+      id: 17,
+      title: 'Свинтус',
+      image: '/assets/articles/svintus.jpg',
+      link: '/articles/svintus'
+    },
+    {
+      id: 18,
+      title: 'Крокодил',
+      image: '/assets/articles/crocodile.jpg',
+      link: '/articles/crocodile'
+    },
+    {
+      id: 19,
+      title: 'Эпичные схватки боевых магов',
+      image: '/assets/articles/epic-battle-wizards.jpg',
+      link: '/articles/epic-battle-wizards'
+    },
+    {
+      id: 20,
+      title: 'Пандемия',
+      image: '/assets/articles/pandemic.jpg',
+      link: '/articles/pandemic'
     }
   ]);
 
@@ -106,13 +190,20 @@ export default function MainPage() {
                 />
               ))
             ) : (
-              <p className="no-games">Нет активных игр</p>
+              <div className="no-games-content">
+                <p className="no-games-text">У вас пока нет предстоящих игр</p>
+                <img 
+                  src="/assets/img/no-games-dino.png" 
+                  alt="Нет активных игр" 
+                  className="no-games-image"
+                />
+              </div>
             )}
           </div>
         </section>
 
         <section className="articles-section">
-        <h2 className="articles-title">Статьи</h2>
+        <h2 className="articles-title">Популярные игры</h2>
         <div className="articles-gallery">
           <button 
             className="gallery-button prev-button" 
