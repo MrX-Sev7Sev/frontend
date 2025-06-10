@@ -144,7 +144,12 @@ export default function MainPage() {
       prevIndex > 0 ? prevIndex - 1 : prevIndex
     );
   };
+  
+  // Проверка, активна ли стрелка вправо
+  const isNextDisabled = currentIndex + 4 >= articles.length;
 
+  // Проверка, активна ли стрелка влево
+  const isPrevDisabled = currentIndex === 0;
 
   useEffect(() => {
     const updateGames = () => {
@@ -205,15 +210,16 @@ export default function MainPage() {
         <section className="articles-section">
         <h2 className="articles-title">Популярные игры</h2>
         <div className="articles-gallery">
-          <button 
-            className="gallery-button prev-button" 
-            onClick={handlePrev}
-            disabled={currentIndex === 0}
-          >
-            <img 
-              src={"../../../public/assets/img/arrow-left.svg"}
-            />
-          </button>
+        <button 
+          className={`gallery-button prev-button ${isPrevDisabled ? 'disabled' : ''}`} 
+          onClick={handlePrev}
+          disabled={isPrevDisabled}
+        >
+          <img 
+            src="/assets/img/arrow-left.svg" 
+            alt="Предыдущие" 
+          />
+        </button>
                     
           <div className="articles-grid">
             {articles.slice(currentIndex, currentIndex + 4).map(article => (
@@ -234,15 +240,16 @@ export default function MainPage() {
             ))}
           </div>
 
-          <button 
-            className="gallery-button next-button" 
-            onClick={handleNext}
-            disabled={currentIndex + 3 >= articles.length}
-          >
-            <img 
-              src={"../../../public/assets/img/arrow-right.svg"}
-            />
-          </button>
+        <button 
+          className={`gallery-button next-button ${isNextDisabled ? 'disabled' : ''}`} 
+          onClick={handleNext}
+          disabled={isNextDisabled}
+        >
+          <img 
+            src="/assets/img/arrow-right.svg" 
+            alt="Следующие" 
+          />
+        </button>
         </div>
       </section>
       </div>

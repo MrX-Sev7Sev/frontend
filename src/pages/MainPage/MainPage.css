@@ -411,3 +411,34 @@
   height: auto;
   margin-top: 1.5rem;
 }
+
+.gallery-button {
+  background: #CC7951;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.5rem; /* Уменьшили padding в 2 раза */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Уменьшили ширину в 2 раза (было 80px, сейчас 40px) */
+  height: 40px; /* Уменьшили высоту в 2 раза (было 80px, сейчас 40px) */
+}
+
+.gallery-button.disabled {
+  background: #E2B07A; /* Нейтрально-бежевый цвет */
+  cursor: not-allowed; /* Курсор "недоступно" */
+}
+
+.gallery-button:not(.disabled):hover {
+  background: #B3593D; /* Стандартный цвет при наведении */
+  transform: scale(1.1);
+}
+
+.gallery-button img {
+  width: 48px;  
+  height: 48px;
+}
