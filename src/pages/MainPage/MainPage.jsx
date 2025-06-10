@@ -19,87 +19,87 @@ export default function MainPage() {
     },
     {
       id: 2,
-      title: 'Шахматы',
-      image: '/assets/articles/chess.jpg',
-      link: '/articles/chess'
-    },
-    {
-      id: 3,
-      title: 'Мафия',
-      image: '/assets/articles/mafia.jpg',
-      link: '/articles/mafia'
-    },
-    {
-      id: 4,
-      title: 'Монополия',
-      image: '/assets/articles/monopoly.jpg',
-      link: '/articles/monopoly'
-    },
-    {
-      id: 5,
-      title: 'Дженга',
-      image: '/assets/articles/jenga.jpg',
-      link: '/articles/jenga'
-    },
-    {
-      id: 6,
-      title: 'Каркассон',
-      image: '/assets/articles/carcassonne.jpg',
-      link: '/articles/carcassonne'
-    },
-    {
-      id: 7,
-      title: 'Dungeons & Dragons',
-      image: '/assets/articles/dnd.jpg',
-      link: '/articles/dnd'
-    },
-    {
-      id: 8,
-      title: 'Бункер',
-      image: '/assets/articles/bunker.jpg',
-      link: '/articles/bunker'
-    },
-    {
-      id: 9,
       title: 'Карты',
       image: '/assets/articles/cards.jpg',
       link: '/articles/cards'
     },
     {
+      id: 3,
+      title: 'Шахматы',
+      image: '/assets/articles/chess.jpg',
+      link: '/articles/chess'
+    },
+    {
+      id: 4,
+      title: 'Шашки',
+      image: '/assets/articles/checkers.jpg',
+      link: '/articles/checkers'
+    },
+    {
+      id: 5,
+      title: 'Нарды',
+      image: '/assets/articles/backgammon.jpg',
+      link: '/articles/backgammon'
+    },
+    {
+      id: 6,
+      title: 'Мафия',
+      image: '/assets/articles/mafia.jpg',
+      link: '/articles/mafia'
+    },
+    {
+      id: 7,
+      title: 'Монополия',
+      image: '/assets/articles/monopoly.jpg',
+      link: '/articles/monopoly'
+    },
+    {
+      id: 8,
+      title: 'Дженга',
+      image: '/assets/articles/jenga.jpg',
+      link: '/articles/jenga'
+    },
+    {
+      id: 9,
+      title: 'Dungeons & Dragons',
+      image: '/assets/articles/dnd.jpg',
+      link: '/articles/dnd'
+    },
+    {
       id: 10,
-      title: 'Диксит',
-      image: '/assets/articles/dixit.jpg',
-      link: '/articles/dixit'
+      title: 'Каркассон',
+      image: '/assets/articles/carcassonne.jpg',
+      link: '/articles/carcassonne'
     },
     {
       id: 11,
-      title: 'Колонизаторы',
-      image: '/assets/articles/catan.jpg',
-      link: '/articles/catan'
+      title: 'Бункер',
+      image: '/assets/articles/bunker.jpg',
+      link: '/articles/bunker'
     },
     {
       id: 12,
+      title: 'Пандемия',
+      image: '/assets/articles/pandemic.jpg',
+      link: '/articles/pandemic'
+    },
+    {
+      id: 13,
+      title: 'Эрудит',
+      image: '/assets/articles/erudite.jpg',
+      link: '/articles/erudite'
+    },
+    {
+      id: 14,
       title: 'Алиас',
       image: '/assets/articles/alias.jpg',
       link: '/articles/alias'
     },
     {
-      id: 13,
-      title: 'Манчкин',
-      image: '/assets/articles/munchkin.jpg',
-      link: '/articles/munchkin'
-    },
-    {
-      id: 14,
-      title: 'Кодовые имена',
-      image: '/assets/articles/codenames.jpg',
-      link: '/articles/codenames'
-    },
-    {
       id: 15,
-      title: 'Скрэббл',
-      image: '/assets/articles/scrabble.jpg',
-      link: '/articles/scrabble'
+      title: 'Угадай, Кто?',
+      image: '/assets/articles/guess-who.jpg',
+      link: '/articles/guess-who'
     },
     {
       id: 16,
@@ -118,18 +118,6 @@ export default function MainPage() {
       title: 'Крокодил',
       image: '/assets/articles/crocodile.jpg',
       link: '/articles/crocodile'
-    },
-    {
-      id: 19,
-      title: 'Эпичные схватки боевых магов',
-      image: '/assets/articles/epic-battle-wizards.jpg',
-      link: '/articles/epic-battle-wizards'
-    },
-    {
-      id: 20,
-      title: 'Пандемия',
-      image: '/assets/articles/pandemic.jpg',
-      link: '/articles/pandemic'
     }
   ]);
 
