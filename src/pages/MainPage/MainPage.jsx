@@ -61,9 +61,9 @@ export default function MainPage() {
     },
     {
       id: 9,
-      title: 'Эволюция',
-      image: '/assets/articles/evolution.jpg',
-      link: '/articles/evolution'
+      title: 'Карты',
+      image: '/assets/articles/cards.jpg',
+      link: '/articles/cards'
     },
     {
       id: 10,
