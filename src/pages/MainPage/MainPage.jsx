@@ -119,7 +119,9 @@ export default function MainPage() {
             onClick={handlePrev}
             disabled={currentIndex === 0}
           >
-            ◀️
+            <img 
+              src={"../../../public/assets/img/arrow-left.svg"}
+            />
           </button>
                     
           <div className="articles-grid">
@@ -146,7 +148,9 @@ export default function MainPage() {
             onClick={handleNext}
             disabled={currentIndex + 3 >= articles.length}
           >
-            ▶️
+            <img 
+              src={"../../../public/assets/img/arrow-right.svg"}
+            />
           </button>
         </div>
       </section>
