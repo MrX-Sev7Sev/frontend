@@ -3,13 +3,136 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import './CreateGamePage.css';
 
+// Массив с популярными играми
+const POPULAR_GAMES = [
+  {
+    id: 2,
+    title: 'Uno',
+    image: '/assets/games/uno.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 3,
+    title: 'Карты',
+    image: '/assets/games/cards.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 4,
+    title: 'Шахматы',
+    image: '/assets/games/chess.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 5,
+    title: 'Шашки',
+    image: '/assets/games/checkers.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 6,
+    title: 'Нарды',
+    image: '/assets/games/backgammon.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 7,
+    title: 'Мафия',
+    image: '/assets/games/mafia.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 8,
+    title: 'Монополия',
+    image: '/assets/games/monopoly.jpg',
+    genre: 'Экономическая'
+  },
+  {
+    id: 9,
+    title: 'Дженга',
+    image: '/assets/games/backgammon.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 10,
+    title: 'Dungeons & Dragons',
+    image: '/assets/games/dnd.jpg',
+    genre: 'Ролевая'
+  },
+  {
+    id: 11,
+    title: 'Каркассон',
+    image: '/assets/games/carcassonn.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 12,
+    title: 'Бункер',
+    image: '/assets/games/bunker.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 13,
+    title: 'Пандемия',
+    image: '/assets/games/pandemic.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 14,
+    title: 'Эрудит',
+    image: '/assets/games/scrabble.jpg',
+    genre: 'Логическая'
+  },
+  {
+    id: 15,
+    title: 'Алиас',
+    image: '/assets/games/alias.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 16,
+    title: 'Угадай, Кто?',
+    image: '/assets/games/guess_who.jpg',
+    genre: 'Логическая'
+  },
+  {
+    id: 17,
+    title: 'Имаджинариум',
+    image: '/assets/games/imaginarium.jpg',
+    genre: 'Креативная'
+  },
+  {
+    id: 18,
+    title: 'Свинтус',
+    image: '/assets/games/svintus.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 19,
+    title: 'Крокодил',
+    image: '/assets/games/crocodile.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 1,
+    title: 'Добавить свою игру',
+    image: '/assets/games/custom.jpg',
+    genre: ''
+  },
+];
+
+
 // Изображения для разных типов игр
 const GAME_IMAGES = {
-  'Uno': '/assets/games/uno.jpg',
-  'Шахматы': '/assets/games/chess.jpg',
-  'Карты': '/assets/games/cards.jpg',
-  'Дженга': '/assets/games/jenga.jpg',
-  'custom': '/assets/games/custom.jpg'
+  'Добавить свою игру': '/assets/games/custom.jpg',
+  'Бункер': '/assets/games/bunker.jpg',
+  'Пандемия': '/assets/games/pandemic.jpg',
+  'Эрудит': '/assets/games/scrabble.jpg',
+  'Алиас': '/assets/games/alias.jpg',
+  'Угадай, Кто?': '/assets/games/guess_who.jpg',
+  'Имаджинариум': '/assets/games/imaginarium.jpg',
+  'Свинтус': '/assets/games/svintus.jpg',
+  'Крокодил': '/assets/games/crocodile.jpg'
 };
 
 export default function CreateGamePage() {
@@ -19,7 +142,7 @@ export default function CreateGamePage() {
   // Состояния формы
   const [formData, setFormData] = useState({
     name: '',
-    type: 'Uno',
+    type: 'Добавить свою игру', // По умолчанию выбрана "Добавить свою игру"
     customType: '',
     location: 'ГУК',
     date: '',
@@ -31,7 +154,7 @@ export default function CreateGamePage() {
   const [customLocation, setCustomLocation] = useState('');
 
   // Показывать ли поле для кастомной игры
-  const [showCustomGameInput, setShowCustomGameInput] = useState(false);
+  const [showCustomGameInput, setShowCustomGameInput] = useState(formData.type === 'Добавить свою игру');
 
   // Обработка изменения типа игры
   const handleGameTypeChange = (e) => {
@@ -39,17 +162,19 @@ export default function CreateGamePage() {
     setFormData({
       ...formData,
       type: value,
-      customType: value === 'custom' ? '' : formData.customType
+      customType: value === 'Добавить свою игру' ? '' : formData.customType
     });
-    setShowCustomGameInput(value === 'custom');
+    setShowCustomGameInput(value === 'Добавить свою игру');
   };
 
   // Отправка формы
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Определяем тип игры
-    const gameType = formData.type === 'custom' ? formData.customType : formData.type;
+    // Определяем тип игры и жанр
+    const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
+    const gameGenre = formData.type === 'Добавить свою игру' ? formData.customGenre : formData.genre;
+
 
     // Определяем место проведения
     const gameLocation = formData.location === 'other' ? customLocation : formData.location;
@@ -59,7 +184,8 @@ export default function CreateGamePage() {
       id: Date.now(),
       ...formData,
       type: gameType,
-      location: gameLocation, // Используем пользовательское место, если выбрано
+      genre: gameGenre, // Устанавливаем жанр
+      location: gameLocation,
       admin: user.email,
       players: [user.email],
       date: new Date(`${formData.date}T${formData.time}`).toISOString()
@@ -73,7 +199,7 @@ export default function CreateGamePage() {
     navigate('/main');
   };
 
-  return (
+    return (
     <div className="create-game-page">
       <h1>Создание игры</h1>
 
@@ -82,7 +208,7 @@ export default function CreateGamePage() {
         <div className="top-section">
           <div className="game-image-container">
             <img 
-              src={GAME_IMAGES[formData.type === 'custom' ? 'custom' : formData.type]} 
+              src={POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg'} 
               alt="Тип игры" 
               className="game-image"
             />
@@ -107,23 +233,36 @@ export default function CreateGamePage() {
             value={formData.type}
             onChange={handleGameTypeChange}
           >
-            <option value="Uno">Uno</option>
-            <option value="Шахматы">Шахматы</option>
-            <option value="Карты">Карты</option>
-            <option value="Дженга">Дженга</option>
-            <option value="custom">Добавить свою игру</option>
+            {POPULAR_GAMES.map((game) => (
+              <option key={game.id} value={game.title}>
+                {game.title}
+              </option>
+            ))}
           </select>
 
           {showCustomGameInput && (
-            <div className="custom-game-input">
-              <input
-                type="text"
-                value={formData.customType}
-                onChange={(e) => setFormData({ ...formData, customType: e.target.value })}
-                placeholder="Введите название игры"
-                required
-              />
-            </div>
+            <>
+              <div className="custom-game-input">
+                <label>Название игры</label>
+                <input
+                  type="text"
+                  value={formData.customType}
+                  onChange={(e) => setFormData({ ...formData, customType: e.target.value })}
+                  placeholder="Введите название игры"
+                  required
+                />
+              </div>
+              <div className="custom-game-input">
+                <label>Жанр игры</label>
+                <input
+                  type="text"
+                  value={formData.customGenre}
+                  onChange={(e) => setFormData({ ...formData, customGenre: e.target.value })}
+                  placeholder="Введите жанр игры"
+                  required
+                />
+              </div>
+            </>
           )}
         </div>
 
