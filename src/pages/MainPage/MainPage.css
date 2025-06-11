@@ -464,3 +464,137 @@
   padding: 0.5rem;
   line-height: 1.2; /* Чтобы текст не накладывался */
 }
+
+/* Стили для блюра и оверлея */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Стили для модального окна */
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 600px;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Кнопка закрытия */
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #943D2C;
+  transition: all 0.3s ease;
+}
+
+.modal-close-button:hover {
+  color: #B3593D;
+}
+
+/* Заголовок и текст */
+.modal-content h2 {
+  color: #943D2C;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-body h3 {
+  color: #943D2C;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.modal-body p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.modal-body p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.tasks-list {
+  margin: 0;
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+
+.tasks-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 80%;
+  max-width: 900px; /* Увеличили ширину в 1.5 раза */
+  position: relative;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  overflow-y: auto; /* Добавим вертикальный скролл, если контент не помещается */
+  max-height: 90vh; /* Ограничим высоту, чтобы окно не выходило за пределы экрана */
+}
+
+/* Адаптивность для небольших экранов */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Шире на мобильных устройствах */
+    padding: 1.5rem; /* Меньше отступы */
+    max-height: 80vh; /* Меньше высота */
+  }
+
+  .modal-body h3 {
+    font-size: 1.5rem; /* Уменьшим размер заголовков */
+  }
+
+  .modal-body p {
+    font-size: 1rem; /* Уменьшим размер текста */
+  }
+
+  .tasks-list li {
+    font-size: 0.95rem; /* Уменьшим размер текста в списке */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%; /* Ещё шире на маленьких экранах */
+    padding: 1rem; /* Ещё меньше отступы */
+    max-height: 70vh; /* Ещё меньше высота */
+  }
+
+  .modal-body h3 {
+    font-size: 1.3rem; /* Ещё меньше размер заголовков */
+  }
+
+  .modal-body p {
+    font-size: 0.95rem; /* Ещё меньше размер текста */
+  }
+
+  .tasks-list li {
+    font-size: 0.9rem; /* Ещё меньше размер текста в списке */
+  }
+}
