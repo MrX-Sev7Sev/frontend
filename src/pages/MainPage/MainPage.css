@@ -65,7 +65,7 @@
 .articles-title {
   color: #943D2C;
   font-size: 1.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 3rem;
 }
 
 .articles-grid {
@@ -441,4 +441,26 @@
 .gallery-button img {
   width: 48px;  
   height: 48px;
+}
+
+.article-overlay {
+  background: linear-gradient(
+    to top, 
+    rgba(255, 255, 255, 0.9) 0%, 
+    rgba(255, 255, 255, 0.7) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  ); /* Чёрный градиент */
+  width: 100%;
+  padding: 1.5rem 1rem 1rem;
+  border-radius: 0 0 16px 16px;
+}
+
+.article-overlay h3 {
+  margin: 0;
+  color: #572811;
+  font-size: 1.6rem; /* Увеличен в 3 раза (было 1.1rem) */
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem;
+  line-height: 1.2; /* Чтобы текст не накладывался */
 }
