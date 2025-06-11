@@ -121,20 +121,6 @@ const POPULAR_GAMES = [
   },
 ];
 
-
-// Изображения для разных типов игр
-const GAME_IMAGES = {
-  'Добавить свою игру': '/assets/games/custom.jpg',
-  'Бункер': '/assets/games/bunker.jpg',
-  'Пандемия': '/assets/games/pandemic.jpg',
-  'Эрудит': '/assets/games/scrabble.jpg',
-  'Алиас': '/assets/games/alias.jpg',
-  'Угадай, Кто?': '/assets/games/guess_who.jpg',
-  'Имаджинариум': '/assets/games/imaginarium.jpg',
-  'Свинтус': '/assets/games/svintus.jpg',
-  'Крокодил': '/assets/games/crocodile.jpg'
-};
-
 export default function CreateGamePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
