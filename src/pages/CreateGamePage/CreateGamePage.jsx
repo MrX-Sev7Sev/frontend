@@ -50,7 +50,7 @@ const POPULAR_GAMES = [
   {
     id: 9,
     title: 'Дженга',
-    image: '/assets/games/backgammon.jpg',
+    image: '/assets/games/jenga.jpg',
     genre: 'Активная'
   },
   {
