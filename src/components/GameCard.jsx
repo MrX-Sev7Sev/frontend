@@ -10,15 +10,29 @@ export default function GameCard({ game }) {
   const getGameImage = (type) => {
     const images = {
       'Uno': '/assets/games/uno.jpg',
-      'Шахматы': '/assets/games/chess.jpg',
       'Карты': '/assets/games/cards.jpg',
+      'Шахматы': '/assets/games/chess.jpg',
+      'Шашки': '/assets/games/checkers.jpg',
+      'Нарды': '/assets/games/backgammon.jpg',
+      'Мафия': '/assets/games/mafia.jpg',
+      'Монополия': '/assets/games/monopoly.jpg',
       'Дженга': '/assets/games/jenga.jpg',
+      'Dungeons & Dragons': '/assets/games/dnd.jpg',
+      'Каркассон': '/assets/games/carcassonn.jpg',
+      'Бункер': '/assets/games/bunker.jpg',
+      'Пандемия': '/assets/games/pandemic.jpg',
+      'Эрудит': '/assets/games/scrabble.jpg',
+      'Алиас': '/assets/games/alias.jpg',
+      'Угадай, Кто?': '/assets/games/guess_who.jpg',
+      'Имаджинариум': '/assets/games/imaginarium.jpg',
+      'Свинтус': '/assets/games/svintus.jpg',
+      'Крокодил': '/assets/games/crocodile.jpg',
       'default': '/assets/games/custom.jpg' // Для всех остальных игр используем custom.jpg
     };
 
-    // Если тип игры не в списке, возвращаем custom.jpg
-    return images[type] || images.default;
-  };
+      // Если тип игры не в списке, возвращаем custom.jpg
+      return images[type] || images.default;
+    };
 
   return (
     <Link to={`/lobby/${game.id}`} className="game-card">

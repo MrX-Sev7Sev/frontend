@@ -161,6 +161,8 @@ export default function CreateGamePage() {
     const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
     const gameGenre = formData.type === 'Добавить свою игру' ? formData.customGenre : formData.genre;
 
+    // изображение
+    image: POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg'
 
     // Определяем место проведения
     const gameLocation = formData.location === 'other' ? customLocation : formData.location;
