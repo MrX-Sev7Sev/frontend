@@ -23,11 +23,10 @@ export default function GameCard({ game }) {
       'Пандемия': '/assets/games/pandemic.jpg',
       'Эрудит': '/assets/games/scrabble.jpg',
       'Алиас': '/assets/games/alias.jpg',
-      'Угадай, Кто?': '/assets/games/guess_who.jpg',
       'Имаджинариум': '/assets/games/imaginarium.jpg',
       'Свинтус': '/assets/games/svintus.jpg',
       'Крокодил': '/assets/games/crocodile.jpg',
-      'default': '/assets/games/custom.jpg' // Для всех остальных игр используем custom.jpg
+      'default': '/assets/games/custom.jpg'
     };
 
       // Если тип игры не в списке, возвращаем custom.jpg

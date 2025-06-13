@@ -92,24 +92,18 @@ const POPULAR_GAMES = [
   },
   {
     id: 16,
-    title: 'Угадай, Кто?',
-    image: '/assets/games/guess_who.jpg',
-    genre: 'Логическая'
-  },
-  {
-    id: 17,
     title: 'Имаджинариум',
     image: '/assets/games/imaginarium.jpg',
     genre: 'Креативная'
   },
   {
-    id: 18,
+    id: 17,
     title: 'Свинтус',
     image: '/assets/games/svintus.jpg',
     genre: 'Карточная'
   },
   {
-    id: 19,
+    id: 18,
     title: 'Крокодил',
     image: '/assets/games/crocodile.jpg',
     genre: 'Активная'
