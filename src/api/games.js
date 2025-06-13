@@ -1,11 +1,140 @@
+const POPULAR_GAMES = [
+  {
+    id: 2,
+    title: 'Uno',
+    image: '/assets/games/uno.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 3,
+    title: 'Карты',
+    image: '/assets/games/cards.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 4,
+    title: 'Шахматы',
+    image: '/assets/games/chess.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 5,
+    title: 'Шашки',
+    image: '/assets/games/checkers.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 6,
+    title: 'Нарды',
+    image: '/assets/games/backgammon.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 7,
+    title: 'Мафия',
+    image: '/assets/games/mafia.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 8,
+    title: 'Монополия',
+    image: '/assets/games/monopoly.jpg',
+    genre: 'Экономическая'
+  },
+  {
+    id: 9,
+    title: 'Дженга',
+    image: '/assets/games/jenga.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 10,
+    title: 'Dungeons & Dragons',
+    image: '/assets/games/dnd.jpg',
+    genre: 'Ролевая'
+  },
+  {
+    id: 11,
+    title: 'Каркассон',
+    image: '/assets/games/carcassonn.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 12,
+    title: 'Бункер',
+    image: '/assets/games/bunker.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 13,
+    title: 'Пандемия',
+    image: '/assets/games/pandemic.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 14,
+    title: 'Эрудит',
+    image: '/assets/games/scrabble.jpg',
+    genre: 'Логическая'
+  },
+  {
+    id: 15,
+    title: 'Алиас',
+    image: '/assets/games/alias.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 16,
+    title: 'Угадай, Кто?',
+    image: '/assets/games/guess_who.jpg',
+    genre: 'Логическая'
+  },
+  {
+    id: 17,
+    title: 'Имаджинариум',
+    image: '/assets/games/imaginarium.jpg',
+    genre: 'Креативная'
+  },
+  {
+    id: 18,
+    title: 'Свинтус',
+    image: '/assets/games/svintus.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 19,
+    title: 'Крокодил',
+    image: '/assets/games/crocodile.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 1,
+    title: 'Добавить свою игру',
+    image: '/assets/games/custom.jpg',
+    genre: 'Другая'
+  },
+];
+
 export const GamesAPI = {
-  getAll() {
-    try {
-      return JSON.parse(localStorage.getItem('games')) || [];
-    } catch (error) {
-      console.error('Ошибка чтения игр:', error);
-      return [];
-    }
+  getAll: () => {
+    const games = JSON.parse(localStorage.getItem('games')) || [];
+    return games.map(game => {
+      // Если жанр не указан, находим его в POPULAR_GAMES
+      if (!game.genre) {
+        const popularGame = POPULAR_GAMES.find(pg => pg.title === game.type);
+        if (popularGame) {
+          game.genre = popularGame.genre;
+        } else {
+          game.genre = 'Другая'; // Дефолтное значение, если игра не найдена
+        }
+      }
+      return game;
+    });
+  },
+  add: (game) => {
+    const existingGames = JSON.parse(localStorage.getItem('games')) || [];
+    const updatedGames = [...existingGames, game];
+    localStorage.setItem('games', JSON.stringify(updatedGames));
   },
 
   save(games) {

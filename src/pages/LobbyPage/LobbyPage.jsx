@@ -183,7 +183,7 @@ export default function LobbyPage() {
             </div>
             <div className="info-item">
               <label>Жанр:</label>
-              <span>{GAME_GENRES[game?.type] || 'Другая'}</span>
+              <span>{game?.genre || 'Другая'}</span>
             </div>
             <div className="info-item">
               <label>Место проведения:</label>

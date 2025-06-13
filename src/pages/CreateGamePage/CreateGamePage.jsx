@@ -130,6 +130,7 @@ export default function CreateGamePage() {
     name: '',
     type: 'Добавить свою игру', // По умолчанию выбрана "Добавить свою игру"
     customType: '',
+    customGenre: '',
     location: 'ГУК',
     date: '',
     time: '',
@@ -157,22 +158,24 @@ export default function CreateGamePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Определяем тип игры и жанр
-    const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
-    const gameGenre = formData.type === 'Добавить свою игру' ? formData.customGenre : formData.genre;
+  // Определяем тип игры и жанр
+  const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
+  const gameGenre = formData.type === 'Добавить свою игру'
+    ? formData.customGenre
+    : POPULAR_GAMES.find((game) => game.title === formData.type)?.genre || 'Другая';
 
     // изображение
     image: POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg'
 
-    // Определяем место проведения
-    const gameLocation = formData.location === 'other' ? customLocation : formData.location;
+  // Определяем место проведения
+  const gameLocation = formData.location === 'other' ? customLocation : formData.location;
 
-    // Создаём новую игру
     const newGame = {
       id: Date.now(),
       ...formData,
       type: gameType,
-      genre: gameGenre, // Устанавливаем жанр
+      image: POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg',
+      genre: gameGenre, // Передаём жанр игры
       location: gameLocation,
       admin: user.email,
       players: [user.email],
@@ -182,7 +185,6 @@ export default function CreateGamePage() {
     // Сохраняем игру
     const existingGames = JSON.parse(localStorage.getItem('games')) || [];
     const updatedGames = [...existingGames, newGame];
-
     localStorage.setItem('games', JSON.stringify(updatedGames));
     navigate('/main');
   };
