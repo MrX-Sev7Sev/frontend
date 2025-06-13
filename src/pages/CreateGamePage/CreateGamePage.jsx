@@ -332,7 +332,7 @@ export default function CreateGamePage() {
             <input
               type="range"
               min="2"
-              max="10"
+              max="20"
               value={formData.maxPlayers}
               onChange={(e) => setFormData({ ...formData, maxPlayers: e.target.value })}
             />

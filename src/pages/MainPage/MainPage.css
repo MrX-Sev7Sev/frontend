@@ -424,7 +424,7 @@
   background: #CC7951;
   color: white;
   border: none;
-  padding: 0.4rem 0.5rem; /* Уменьшили padding в 2 раза */
+  padding: 0.4rem 0.5rem;
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -432,8 +432,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px; /* Уменьшили ширину в 2 раза (было 80px, сейчас 40px) */
-  height: 40px; /* Уменьшили высоту в 2 раза (было 80px, сейчас 40px) */
+  width: 40px;
+  height: 40px;
 }
 
 .gallery-button.disabled {
@@ -454,10 +454,10 @@
 .article-overlay {
   background: linear-gradient(
     to top, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(255, 255, 255, 0.7) 50%, 
-    rgba(255, 255, 255, 0) 100%
-  ); /* Чёрный градиент */
+    rgba(255, 190, 115, 0.9) 0%, /* #FEE3C4 с прозрачностью 90% */ 
+    rgba(255, 190, 115, 0.7) 50%, /* #FEE3C4 с прозрачностью 70% */
+    rgba(255, 190, 115, 0) 100% /* #FEE3C4 с прозрачностью 0% */
+  );
   width: 100%;
   padding: 1.5rem 1rem 1rem;
   border-radius: 0 0 16px 16px;
