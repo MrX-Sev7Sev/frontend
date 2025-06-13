@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import './CreateGamePage.css';
 
 // Массив с популярными играми
@@ -188,6 +189,28 @@ export default function CreateGamePage() {
     localStorage.setItem('games', JSON.stringify(updatedGames));
     navigate('/main');
   };
+
+  // хуйня для вычисления заливки ползунка колва игроков
+    useEffect(() => {
+        const rangeInput = document.querySelector('.players-input input[type="range"]');
+
+        if (rangeInput) {
+          const handleInput = () => {
+            const value = rangeInput.value;
+            const max = rangeInput.max;
+            const min = rangeInput.min;
+            const progress = ((value - min) / (max - min)) * 100; // Точное вычисление прогресса
+            rangeInput.style.setProperty('--range-progress', `${progress}%`);
+          };
+          handleInput();
+          rangeInput.addEventListener('input', handleInput);
+
+          // Отписка при размонтировании компонента
+          return () => {
+            rangeInput.removeEventListener('input', handleInput);
+          };
+        }
+      }, []); // Пустой массив зависимостей, чтобы эффект выполнился только при монтировании
 
     return (
     <div className="create-game-page">
