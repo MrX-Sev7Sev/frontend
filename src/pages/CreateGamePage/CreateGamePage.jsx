@@ -302,9 +302,10 @@ export default function CreateGamePage() {
             onChange={(e) => setFormData({ ...formData, location: e.target.value })}
           >
             <option value="ГУК">Главный учебный корпус</option>
-            <option value="РТФ">Радиотехнический корпус</option>
-            <option value="УГИ">Уральский гуманитарный институт</option>
-            <option value="ИЕНиМ">Институт естественных наук</option>
+            <option value="УГИ">Уральский Гуманитарный Институт</option>
+            <option value="ИРИТ-РТФ">Институт Радиоэлектронники и Информационных Технологий - РТФ</option>
+            <option value="ФТИ">Физико-Технологический Институт</option>
+            <option value="ХТИ">Химико-Технологический Институт</option>
             <option value="other">Другое место</option>
           </select>
 
