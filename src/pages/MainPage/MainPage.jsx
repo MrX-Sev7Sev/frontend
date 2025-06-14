@@ -179,7 +179,7 @@ export default function MainPage() {
     },
     {
       id: 9,
-      title: 'Dungeons and Dragons',
+      title: 'Dungeons & Dragons',
       image: '/assets/articles/dnd.jpg',
       link: '/articles/dnd',
       goal: `
