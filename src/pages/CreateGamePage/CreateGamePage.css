@@ -43,7 +43,7 @@
 
 .game-name-group input {
   width: 100%;
-  max-width: 450px; /* Уменьшаем ширину */
+  max-width: 450px;
   padding: 12px 15px;
   border: 1px solid #E2B07A;
   border-radius: 8px;
@@ -114,7 +114,7 @@
 
 .custom-game-input input {
   width: 100%;
-    color: #9B4736;
+  color: #9B4736;
   font-weight: 600;
   background: #FFEDE2 !important;
 }
@@ -133,8 +133,17 @@
   flex: 1;
   height: 8px;
   border-radius: 4px;
-  background: #FFF9F5;
+  background: linear-gradient(
+    to right,
+    #943D2C 0%,
+    #943D2C var(--range-progress, 0%),
+    #FFF9F5 var(--range-progress, 0%),
+    #FFF9F5 100%
+  );
   outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
 }
 
 .players-input input[type="range"]::-webkit-slider-thumb {
@@ -142,8 +151,59 @@
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background: #CC7951;
+  background: #943D2C;
   cursor: pointer;
+  transition: background 0.3s ease;
+  transform: translateY(-6px);
+}
+
+.players-input input[type="range"]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 4px;
+}
+
+.players-input input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #943D2C;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  transform: translateY(-6px);
+}
+
+.players-input input[type="range"]::-moz-range-track {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #943D2C 0%,
+    #943D2C var(--range-progress, 0%),
+    #FFF9F5 var(--range-progress, 0%),
+    #FFF9F5 100%
+  );
+}
+
+.players-input input[type="range"]::-ms-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #943D2C;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  transform: translateY(-6px);
+}
+
+.players-input input[type="range"]::-ms-track {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(
+    to right,
+    #943D2C 0%,
+    #943D2C var(--range-progress, 0%),
+    #FFF9F5 var(--range-progress, 0%),
+    #FFF9F5 100%
+  );
 }
 
 .players-count {
@@ -174,7 +234,6 @@ button:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Общие стили для обеих кнопок */
 .create-game-page .form-buttons button {
   padding: 12px 24px;
   border: none;
@@ -188,30 +247,54 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Общие стили при наведении */
 .create-game-page .form-buttons button:hover {
   opacity: 1;
   transform: translateY(-1px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Общие стили при активном состоянии */
 .create-game-page .form-buttons button:active {
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Стиль для кнопки "Отмена" */
 .create-game-page .cancel-button {
   background-color: #FFF9F5;
   color: #CC7951;
   border: 1px solid #CC7951;
 }
 
-/* Стили для кнопки "Создать игру" */
 .create-game-page .submit-button {
   background-color: #CC7951;
   color: white;
+}
+
+.custom-location-input input {
+  width: 100%;
+  max-width: 768px;
+  padding: 12px 15px;
+  border: 1px solid #E2B07A;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  color: #9B4736;
+  font-weight: 600;
+  background: #FFEDE2 !important;
+}
+
+.custom-location-input input::placeholder {
+  color: #adadad;
+}
+
+.custom-location-input input:focus {
+  outline: none;
+  border-color: #CC7951;
+  box-shadow: 0 0 0 3px rgba(204, 121, 81, 0.2);
+}
+
+label {
+  font-size: 20px;
+  font-weight: 700 !important;
 }
 
 @media (max-width: 768px) {
@@ -242,114 +325,4 @@ button:hover {
   .form-buttons button {
     width: 100%;
   }
-}
-
-.custom-location-input input {
-  width: 100%;
-  max-width: 768px; /* Уменьшаем ширину */
-  padding: 12px 15px;
-  border: 1px solid #E2B07A;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  color: #9B4736;
-  font-weight: 600;
-  background: #FFEDE2 !important;
-}
-
-.custom-location-input input::placeholder {
-  color: #adadad
-}
-
-.custom-location-input input:focus {
-  outline: none;
-  border-color: #CC7951;
-  box-shadow: 0 0 0 3px rgba(204, 121, 81, 0.2);
-}
-
-label {
-  font-size: 20px;
-}
-
-.players-input input[type="range"] {
-  flex: 1;
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    to right,
-    #943D2C 0%, /* Цвет заполнения */
-    #943D2C var(--range-progress, 0%), /* Граница заполнения */
-    #FFF9F5 var(--range-progress, 0%), /* Граница фона */
-    #FFF9F5 100%
-  );
-  outline: none;
-  -webkit-appearance: none; /* Сброс встроенных стилей для Chrome */
-  appearance: none;
-  cursor: pointer;
-}
-
-/* Стили для движка (thumb) */
-.players-input input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none; /* Сброс встроенных стилей для Chrome */
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #943D2C; /* Цвет движка */
-  cursor: pointer;
-  transition: background 0.3s ease;
-  transform: translateY(-6px); /* Поднимаем ползунок на половину высоты */
-}
-
-/* Стили для трека в Chrome */
-.players-input input[type="range"]::-webkit-slider-runnable-track {
-  height: 8px;
-  border-radius: 4px;
-}
-
-.players-input input[type="range"]::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #943D2C;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  transform: translateY(-6px); /* Поднимаем ползунок на половину высоты */
-}
-
-.players-input input[type="range"]::-moz-range-track {
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    to right,
-    #943D2C 0%,
-    #943D2C var(--range-progress, 0%),
-    #FFF9F5 var(--range-progress, 0%),
-    #FFF9F5 100%
-  );
-}
-
-.players-input input[type="range"]::-ms-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: #943D2C;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  transform: translateY(-6px); /* Поднимаем ползунок на половину высоты */
-}
-
-.players-input input[type="range"]::-ms-track {
-  height: 8px;
-  border-radius: 4px;
-  background: linear-gradient(
-    to right,
-    #943D2C 0%,
-    #943D2C var(--range-progress, 0%),
-    #FFF9F5 var(--range-progress, 0%),
-    #FFF9F5 100%
-  );
-}
-
-label {
-  font-weight: 700 !important;
 }
