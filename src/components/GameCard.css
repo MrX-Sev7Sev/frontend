@@ -52,6 +52,7 @@
   text-align: left; /* Текст выравниваем по левому краю */
   align-self: flex-start; /* Выравниваем по левому краю */
   margin-bottom: 0.5rem; /* Добавляем отступ снизу для разделения */
+  white-space: nowrap; /* Запрещаем перенос строки */
 }
 
 .game-card-title {
