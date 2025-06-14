@@ -42,6 +42,18 @@ export default function GameCard({ game }) {
       />
       <div className="game-card-overlay">
         <h3 className="game-card-title">{game.name}</h3>
+        {game.date && (
+          <span className="game-card-date">
+            {new Date(game.date).toLocaleDateString('ru-RU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric'
+            }).replace(' г.', ' года')} {new Date(game.date).toLocaleTimeString('ru-RU', {
+              hour: '2-digit',
+              minute: '2-digit'
+            })}
+          </span>
+        )}
         <div className="game-card-info">
           {isAdmin && <span className="admin-badge">Админ</span>}
           <span>{game.players.length}/{game.maxPlayers} игроков</span>
