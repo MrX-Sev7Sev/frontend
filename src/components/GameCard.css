@@ -34,13 +34,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 15%; /* 15% высоты изображения */
+  height: 20%; /* Увеличиваем высоту для лучшей адаптивности */
   background: rgba(254, 227, 196, 0.64); /* #FEE3C4 с opacity 64% */
   border-radius: 16px 16px 0 0; /* Устанавливаем такой же border-radius, как у article-overlay */
   display: flex;
   flex-direction: column;
   align-items: stretch; /* Растягиваем элементы по горизонтали */
-  justify-content: flex-end; /* Выравниваем по нижнему краю */
+  justify-content: space-between; /* Распределяем элементы по вертикали */
   padding: 10px; /* Отступы для текста */
   color: white;
 }
@@ -51,6 +51,7 @@
   font-weight: 700; /* Делаем шрифт еще жирнее */
   text-align: left; /* Текст выравниваем по левому краю */
   align-self: flex-start; /* Выравниваем по левому краю */
+  margin-bottom: 0.5rem; /* Добавляем отступ снизу для разделения */
 }
 
 .game-card-title {
