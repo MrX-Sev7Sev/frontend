@@ -28,12 +28,30 @@
   left: 0;
   right: 0;
   padding: 1rem;
-  background: linear-gradient(
-    to top, 
-    rgba(0, 0, 0, 0.7) 0%, 
-    rgba(0, 0, 0, 0) 100%
-  );
   color: white;
+}
+
+.game-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%; /* 15% высоты изображения */
+  background: rgba(254, 227, 196, 0.64); /* #FEE3C4 с opacity 64% */
+  border-radius: 10px; /* Закругляем нижние углы */
+  display: flex;
+  align-items: flex-start; /* Текст выравниваем по верхнему краю */
+  justify-content: left; /* Текст выравниваем по левому краю */
+  padding: 10px; /* Отступы для текста */
+}
+
+.game-card-overlay h3 {
+  color: #572811; /* Цвет текста */
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: left; /* Текст выравниваем по левому краю */
+  left: 1rem; /* Сдвиг текста вправо */
 }
 
 .game-card-title {
