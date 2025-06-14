@@ -700,7 +700,7 @@
 .no-games-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start; /* Выравниваем содержимое слева */
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -710,6 +710,7 @@
   font-size: 1.5rem;
   font-weight: 600;
   margin: 0;
+  text-align: left; /* Выравниваем текст слева */
 }
 
 .no-games-image {
