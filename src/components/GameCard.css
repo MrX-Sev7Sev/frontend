@@ -38,19 +38,19 @@
   background: rgba(254, 227, 196, 0.64); /* #FEE3C4 с opacity 64% */
   border-radius: 16px 16px 0 0; /* Устанавливаем такой же border-radius, как у article-overlay */
   display: flex;
-  align-items: flex-start; /* Текст выравниваем по верхнему краю */
-  justify-content: left; /* Текст выравниваем по левому краю */
+  flex-direction: column;
+  align-items: stretch; /* Растягиваем элементы по горизонтали */
+  justify-content: flex-end; /* Выравниваем по нижнему краю */
   padding: 10px; /* Отступы для текста */
   color: white;
 }
 
 .game-card-overlay h3 {
   color: #572811; /* Цвет текста */
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 0;
+  font-size: 1.5rem; /* Увеличиваем размер шрифта еще больше */
+  font-weight: 700; /* Делаем шрифт еще жирнее */
   text-align: left; /* Текст выравниваем по левому краю */
-  left: 1rem; /* Сдвиг текста вправо */
+  align-self: flex-start; /* Выравниваем по левому краю */
 }
 
 .game-card-title {
@@ -61,10 +61,14 @@
 
 .game-card-info {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  align-self: flex-end; /* Выравниваем по правому краю */
+  color: #572811; /* Устанавливаем тот же цвет, что и для названия комнаты */
+  position: relative; /* Устанавливаем relative для контейнера, чтобы absolute позиционирование работало */
 }
 
 .admin-badge {
@@ -74,4 +78,7 @@
   border-radius: 4px;
   font-size: 0.8rem;
   font-weight: 500;
+  position: absolute;
+  top: -1.5rem; /* Располагаем значок над количеством игроков */
+  right: 0;
 }
