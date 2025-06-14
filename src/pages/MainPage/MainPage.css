@@ -670,16 +670,16 @@
   background: #cc7951;
   color: white;
   border: none;
-  padding: 0.4rem 0.5rem;
+  padding: 0.66rem 0.84rem; /* Увеличиваем padding в 1.25 раза */
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 1.2rem;
+  font-size: 2rem; /* Увеличиваем размер шрифта в 1.25 раза */
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 66px; /* Увеличиваем ширину в 1.25 раза */
+  height: 66px; /* Увеличиваем высоту в 1.25 раза */
 }
 
 .gallery-button.disabled {
@@ -693,8 +693,8 @@
 }
 
 .gallery-button img {
-  width: 24px;
-  height: 24px;
+  width: 40px; /* Увеличиваем размер изображения в 1.25 раза */
+  height: 40px; /* Увеличиваем размер изображения в 1.25 раза */
 }
 
 .no-games-content {
