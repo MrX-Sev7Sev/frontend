@@ -129,7 +129,8 @@ export default function CreateGamePage() {
     location: 'ГУК',
     date: '',
     time: '',
-    maxPlayers: 4
+    maxPlayers: 4,
+    room: '' // Добавляем поле для аудитории/места
   });
 
   // Поле для ввода "Другое место"
@@ -160,16 +161,16 @@ export default function CreateGamePage() {
     : POPULAR_GAMES.find((game) => game.title === formData.type)?.genre || 'Другая';
 
     // изображение
-    image: POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg'
+    const gameImage = POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg';
 
   // Определяем место проведения
-  const gameLocation = formData.location === 'other' ? customLocation : formData.location;
+  const gameLocation = formData.location === 'other' ? customLocation : `${formData.location}, ${formData.room}`;
 
     const newGame = {
       id: Date.now(),
       ...formData,
       type: gameType,
-      image: POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg',
+      image: gameImage,
       genre: gameGenre, // Передаём жанр игры
       location: gameLocation,
       admin: user.email,
@@ -318,8 +319,18 @@ export default function CreateGamePage() {
               />
             </div>
           )}
+          {formData.location !== 'other' && (
+            <div className="custom-location-input">
+              <input
+                type="text"
+                value={formData.room}
+                onChange={(e) => setFormData({ ...formData, room: e.target.value })}
+                placeholder="Введите аудиторию/место"
+                required
+              />
+            </div>
+          )}
         </div>
-
         {/* Количество участников */}
         <div className="form-group">
           <label>Количество участников</label>
