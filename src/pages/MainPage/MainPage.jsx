@@ -12,6 +12,7 @@ export default function MainPage() {
   const [games, setGames] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0);
 
   const [articles] = useState([
     {
@@ -388,6 +389,17 @@ export default function MainPage() {
   const isNextDisabled = currentIndex + 4 >= articles.length;
   const isPrevDisabled = currentIndex === 0;
 
+  const handleNextGallery = () => {
+    setCurrentGalleryIndex((prevIndex) => (prevIndex + 4 < games.length ? prevIndex + 1 : prevIndex));
+  };
+
+  const handlePrevGallery = () => {
+    setCurrentGalleryIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : prevIndex));
+  };
+
+  const isNextGalleryDisabled = currentGalleryIndex + 4 >= games.length;
+  const isPrevGalleryDisabled = currentGalleryIndex === 0;
+
   const handleArticleClick = (article) => {
     setSelectedArticle(article);
     setIsModalOpen(true);
@@ -425,34 +437,41 @@ export default function MainPage() {
 
       <div className="main-content">
         <section className="user-games-section">
-          <div className="section-header">
-            <h2 className="section-title">Ваши игры</h2>
-            <button onClick={logout} className="logout-button">
-              Выйти
-            </button>
-          </div>
-
-          <div className="games-grid">
-            {games.length > 0 ? (
-              games.map(game => (
-                <GameCard
-                  key={game.id}
-                  game={game}
-                  onDelete={handleDeleteGame}
-                />
-              ))
-            ) : (
-              <div className="no-games-content">
-                <p className="no-games-text">У вас пока нет предстоящих игр</p>
-                <img
-                  src="/assets/img/no-games-dino.png"
-                  alt="Нет активных игр"
-                  className="no-games-image"
-                />
-              </div>
-            )}
-          </div>
-        </section>
+                  <div className="section-header">
+                    <h2 className="section-title">Ваши игры</h2>
+                    <button onClick={logout} className="logout-button">
+                      Выйти
+                    </button>
+                  </div>
+                  {games.length > 0 ? (
+                    <div className="games-gallery">
+                      <button
+                        className={`gallery-button prev-button ${isPrevGalleryDisabled ? 'disabled' : ''}`}
+                        onClick={handlePrevGallery}
+                        disabled={isPrevGalleryDisabled}
+                      >
+                        <img src="/assets/img/arrow-left.svg" alt="Предыдущие" />
+                      </button>
+                      <div className="games-grid">
+                        {games.slice(currentGalleryIndex, currentGalleryIndex + 4).map((game) => (
+                          <GameCard key={game.id} game={game} />
+                        ))}
+                      </div>
+                      <button
+                        className={`gallery-button next-button ${isNextGalleryDisabled ? 'disabled' : ''}`}
+                        onClick={handleNextGallery}
+                        disabled={isNextGalleryDisabled}
+                      >
+                        <img src="/assets/img/arrow-right.svg" alt="Следующие" />
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="no-games-content">
+                      <p className="no-games-text">У вас пока нет предстоящих игр</p>
+                      <img src="/assets/img/no-games-dino.png" alt="Нет активных игр" className="no-games-image" />
+                    </div>
+                  )}
+                </section>
 
         <section className="articles-section">
           <h2 className="articles-title">Популярные игры</h2>
