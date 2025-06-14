@@ -1,14 +1,14 @@
 .game-card {
-  display: block;
-  width: 200px;
-  height: 200px;
-  border-radius: 16px;
-  overflow: hidden;
   position: relative;
-  text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
   transition: all 0.3s ease;
   aspect-ratio: 1/1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  flex: 1 1 calc(33.333% - 1rem);
+  min-width: 250px;
+  cursor: pointer;
+  display: block; /* Убедимся, что контейнер корректно обрабатывает содержимое */
 }
 
 .game-card:hover {
@@ -17,19 +17,15 @@
 }
 
 .game-card-image {
-  margin: -30px;
-  width: 290px;
-  height: 290px;
-  display: block;
-}
-
-.game-card-overlay {
-  position: absolute;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute; /* Используем absolute, чтобы изображение точно заполнило контейнер */
+  top: 0;
   left: 0;
-  right: 0;
-  padding: 1rem;
-  color: white;
+  display: block;
+  object-fit: fill; /* Используем fill, чтобы изображение полностью заполняло контейнер, даже если это искажает пропорции */
+  margin: 0; /* Убираем возможные отступы */
+  padding: 0; /* Убираем возможные отступы */
 }
 
 .game-card-overlay {
@@ -44,6 +40,7 @@
   align-items: flex-start; /* Текст выравниваем по верхнему краю */
   justify-content: left; /* Текст выравниваем по левому краю */
   padding: 10px; /* Отступы для текста */
+  color: white;
 }
 
 .game-card-overlay h3 {
