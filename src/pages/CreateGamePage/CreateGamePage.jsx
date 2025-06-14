@@ -229,6 +229,7 @@ export default function CreateGamePage() {
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
               placeholder="Введите название игровой комнаты"
+              maxLength={24}
             />
           </div>
         </div>
