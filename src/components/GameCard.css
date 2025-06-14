@@ -9,6 +9,7 @@
   min-width: 250px;
   cursor: pointer;
   display: block; /* Убедимся, что контейнер корректно обрабатывает содержимое */
+  border-radius: 16px; /* Добавляем такой же border-radius, как у article-card */
 }
 
 .game-card:hover {
@@ -35,7 +36,7 @@
   right: 0;
   height: 15%; /* 15% высоты изображения */
   background: rgba(254, 227, 196, 0.64); /* #FEE3C4 с opacity 64% */
-  border-radius: 10px; /* Закругляем нижние углы */
+  border-radius: 16px 16px 0 0; /* Устанавливаем такой же border-radius, как у article-overlay */
   display: flex;
   align-items: flex-start; /* Текст выравниваем по верхнему краю */
   justify-content: left; /* Текст выравниваем по левому краю */
