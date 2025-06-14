@@ -100,15 +100,6 @@
   object-fit: cover;
 }
 
-.article-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1.2rem;
-  background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 100%);
-}
-
 .article-overlay h3 {
   color: white;
   margin: 0;
@@ -175,18 +166,6 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-}
-
-.article-overlay {
-  background: linear-gradient(
-    to top, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(255, 255, 255, 0.7) 50%, 
-    rgba(255, 255, 255, 0) 100%
-  );
-  width: 100%;
-  padding: 1.5rem 1rem 1rem;
-  border-radius: 0 0 16px 16px;
 }
 
 .article-overlay h3 {
@@ -287,18 +266,6 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-}
-
-.article-overlay {
-  background: linear-gradient(
-    to top, 
-    rgba(255, 255, 255, 0.9) 0%, 
-    rgba(255, 255, 255, 0.7) 50%, 
-    rgba(255, 255, 255, 0) 100%
-  );
-  width: 100%;
-  padding: 1.5rem 1rem 1rem;
-  border-radius: 0 0 16px 16px;
 }
 
 .article-overlay h3 {
@@ -451,18 +418,6 @@
   height: 48px;
 }
 
-.article-overlay {
-  background: linear-gradient(
-    to top, 
-    rgba(255, 190, 115, 0.9) 0%, /* #FEE3C4 с прозрачностью 90% */ 
-    rgba(255, 190, 115, 0.7) 50%, /* #FEE3C4 с прозрачностью 70% */
-    rgba(255, 190, 115, 0) 100% /* #FEE3C4 с прозрачностью 0% */
-  );
-  width: 100%;
-  padding: 1.5rem 1rem 1rem;
-  border-radius: 0 0 16px 16px;
-}
-
 .article-overlay h3 {
   margin: 0;
   color: #572811;
@@ -605,4 +560,47 @@
   .tasks-list li {
     font-size: 0.9rem; /* Ещё меньше размер текста в списке */
   }
+}
+
+.article-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  aspect-ratio: 1/1;
+  box-shadow: none;
+  transform: translateY(0);
+  cursor: pointer;
+}
+
+.article-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: relative;
+}
+
+.article-overlay h3 {
+  position: relative;
+  color: #572811; /* Цвет текста */
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  left: 1rem;
+}
+
+.article-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 15%;
+  background: rgba(254, 227, 196, 0.64);
+  border-radius: 16px 16px 16px 16px;
+  display: flex;
+  align-items: top;
+  justify-content: left;
+  padding: 10px; /* Отступы для текста */
+
 }
