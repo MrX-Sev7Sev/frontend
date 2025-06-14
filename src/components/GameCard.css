@@ -87,7 +87,7 @@
 .game-card-date {
   color: #572811; /* Тот же цвет, что и для названия комнаты */
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   align-self: flex-end; /* Выравниваем по нижнему краю */
   margin-right: auto; /* Сдвигаем влево */
 }
