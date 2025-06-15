@@ -10,6 +10,12 @@
   margin: 0 auto;
 }
 
+.content-container {
+  margin: 0 0 0 -150px; /* Сдвигаем контейнер левее */
+  width: 100%;
+  max-width: 800px; /* Соответствует max-width заголовка */
+}
+
 .games-list {
   display: grid;
   gap: 1.5rem;

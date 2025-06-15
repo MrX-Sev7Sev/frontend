@@ -216,137 +216,136 @@ export default function JoinGamePage() {
       
       <div className="join-content">
         <h1>Доступные игры</h1>
+        <div className="content-container">
+          {/* Поиск и фильтры */}
+          <div className="search-and-filters">
+            <div className="search-container">
+              <input
+                type="text"
+                placeholder="Поиск по названию комнаты"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
 
-        {/* Поиск и фильтры */}
-        <div className="search-and-filters">
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Поиск по названию комнаты"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            {searchQuery === '' && <img src="/assets/img/search-icon.svg" alt="Поиск" className="search-icon" />}
+            <div className="filter-icon" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+              <img src="/assets/img/filter-icon.svg" alt="Фильтр" />
+              <span>Фильтр</span>
+            </div>
+
+            {isFilterOpen && (
+              <div className="filter-dropdown">
+                <div className="filter-group">
+                  <label>Тип игры:</label>
+                  <select
+                    value={filters.type}
+                    onChange={(e) => setFilters({ ...filters, type: e.target.value, customType: '' })}
+                  >
+                    <option value="">Все</option>
+                    {POPULAR_GAMES.filter(game => game.title !== 'Добавить свою игру').map((game) => (
+                      <option key={game.id} value={game.title}>
+                        {game.title}
+                      </option>
+                    ))}
+                    <option value="custom">Другое</option>
+                  </select>
+
+                  {filters.type === 'custom' && (
+                    <input
+                      type="text"
+                      value={filters.customType}
+                      onChange={(e) => setFilters({ ...filters, customType: e.target.value })}
+                      placeholder="Введите тип игры"
+                    />
+                  )}
+                </div>
+
+                <div className="filter-group">
+                  <label>Место:</label>
+                  <select
+                    value={filters.location}
+                    onChange={(e) => setFilters({ ...filters, location: e.target.value, customLocation: '' })}
+                  >
+                    <option value="">Все</option>
+                    <option value="ГУК">Главный учебный корпус</option>
+                    <option value="РТФ">Радиотехнический корпус</option>
+                    <option value="УГИ">Уральский гуманитарный институт</option>
+                    <option value="ИЕНиМ">Институт естественных наук</option>
+                    <option value="custom">Другое</option>
+                  </select>
+
+                  {filters.location === 'custom' && (
+                    <input
+                      type="text"
+                      value={filters.customLocation}
+                      onChange={(e) => setFilters({ ...filters, customLocation: e.target.value })}
+                      placeholder="Введите место проведения"
+                    />
+                  )}
+                </div>
+
+                <div className="filter-group">
+                  <label>Дата:</label>
+                  <input
+                    type="date"
+                    value={filters.date}
+                    onChange={(e) => setFilters({ ...filters, date: e.target.value })}
+                  />
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="filter-icon" ref={filterButtonRef} onClick={() => setIsFilterOpen(!isFilterOpen)}>
-            <img src="/assets/img/filter-icon.svg" alt="Фильтр" />
-            <span>Фильтр</span>
+          {/* Таблица комнат */}
+          <div className="games-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Место</th>
+                  <th>Название комнаты</th>
+                  <th>Игра</th>
+                  <th>Время</th>
+                  <th>Создатель</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filterGames(availableGames).map(game => (
+                  <tr 
+                    key={game.id}
+                    onClick={() => handleJoinGame(game.id)}
+                    className="game-row"
+                  >
+                    <td>{game.location}</td>
+                    <td>{game.name}</td>
+                    <td>{game.type}</td>
+                    <td>
+                      {new Date(game.date).toLocaleDateString('ru-RU', {
+                        day: 'numeric',
+                        month: 'long'
+                      })}
+                    </td>
+                    <td>
+                      <div className="creator-info">
+                        <img 
+                          src={game.adminAvatar || '/assets/img/avatar-default.png'} 
+                          alt="Создатель" 
+                          className="creator-avatar"
+                        />
+                        <span>{game.admin}</span>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
 
-          {isFilterOpen && (
-            <div className="filter-dropdown" ref={filterRef}>
-              <div className="filter-group">
-                <label>Тип игры:</label>
-                <select
-                  value={filters.type}
-                  onChange={(e) => setFilters({ ...filters, type: e.target.value, customType: '' })}
-                >
-                  <option value="">Все</option>
-                  {POPULAR_GAMES.filter(game => game.title !== 'Добавить свою игру').map((game) => (
-                    <option key={game.id} value={game.title}>
-                      {game.title}
-                    </option>
-                  ))}
-                  <option value="custom">Другое</option>
-                </select>
-
-                {filters.type === 'custom' && (
-                  <input
-                    type="text"
-                    value={filters.customType}
-                    onChange={(e) => setFilters({ ...filters, customType: e.target.value })}
-                    placeholder="Введите тип игры"
-                  />
-                )}
-              </div>
-
-              <div className="filter-group">
-                <label>Место:</label>
-                <select
-                  value={filters.location}
-                  onChange={(e) => setFilters({ ...filters, location: e.target.value, customLocation: '' })}
-                >
-                  <option value="">Все</option>
-                  <option value="ГУК">Главный учебный корпус</option>
-                  <option value="УГИ">Уральский Гуманитарный Институт</option>
-                  <option value="ИРИТ-РТФ">Институт Радиоэлектронники и Информационных Технологий - РТФ</option>
-                  <option value="ФТИ">Физико-Технологический Институт</option>
-                  <option value="ХТИ">Химико-Технологический Институт</option>
-                  <option value="custom">Другое</option>
-                </select>
-
-                {filters.location === 'custom' && (
-                  <input
-                    type="text"
-                    value={filters.customLocation}
-                    onChange={(e) => setFilters({ ...filters, customLocation: e.target.value })}
-                    placeholder="Введите место проведения"
-                  />
-                )}
-              </div>
-
-              <div className="filter-group">
-                <label>Дата:</label>
-                <input
-                  type="date"
-                  value={filters.date}
-                  onChange={(e) => setFilters({ ...filters, date: e.target.value })}
-                />
-              </div>
+          {filterGames(availableGames).length === 0 && (
+            <div className="no-games">
+              <p>Нет доступных игр по вашему запросу</p>
             </div>
           )}
         </div>
-
-        {/* Таблица комнат */}
-        <div className="games-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Место</th>
-                <th>Название комнаты</th>
-                <th>Игра</th>
-                <th>Время</th>
-                <th>Создатель</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filterGames(availableGames).map(game => (
-                <tr 
-                  key={game.id}
-                  onClick={() => handleJoinGame(game.id)}
-                  className="game-row"
-                >
-                  <td>{game.location}</td>
-                  <td>{game.name}</td>
-                  <td>{game.type}</td>
-                  <td>
-                    {new Date(game.date).toLocaleDateString('ru-RU', {
-                      day: 'numeric',
-                      month: 'long'
-                    })}
-                  </td>
-                  <td>
-                    <div className="creator-info">
-                      <img 
-                        src={game.adminAvatar || '/assets/img/avatar-default.png'} 
-                        alt="Создатель" 
-                        className="creator-avatar"
-                      />
-                      <span>{game.admin}</span>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {filterGames(availableGames).length === 0 && (
-          <div className="no-games">
-            <p>Нет доступных игр по вашему запросу</p>
-          </div>
-        )}
       </div>
     </div>
   );
