@@ -345,7 +345,11 @@ export default function JoinGamePage() {
 
           {filterGames(availableGames).length === 0 && (
             <div className="no-games">
-              <p>Нет доступных игр по вашему запросу</p>
+              {availableGames.length === 0 ? (
+                <p>Нет доступных игр</p>
+              ) : (
+                <p>Нет доступных игр по вашему запросу</p>
+              )}
             </div>
           )}
         </div>
