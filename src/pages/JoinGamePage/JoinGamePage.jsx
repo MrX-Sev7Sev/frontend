@@ -184,7 +184,11 @@ export default function JoinGamePage() {
         (filters.customLocation && game.location.toLowerCase().includes(filters.customLocation.toLowerCase()));
 
       // Дата
-      const matchesDate = !filters.date || new Date(game.date).toISOString().split('T')[0] === filters.date;
+      const matchesDate = !filters.date || new Date(game.date).toLocaleDateString('ru-RU', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric'
+      }).split('.').reverse().join('-') === filters.date;
 
       return matchesSearch && matchesType && matchesLocation && matchesDate;
     });
