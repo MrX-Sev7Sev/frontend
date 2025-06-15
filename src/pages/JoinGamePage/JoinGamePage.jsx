@@ -226,6 +226,9 @@ export default function JoinGamePage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
+              {searchQuery === '' && (
+                <img src="/assets/img/search-icon.svg" alt="Поиск" className="search-icon" />
+              )}
             </div>
 
             <div className="filter-icon" onClick={() => setIsFilterOpen(!isFilterOpen)}>
