@@ -184,6 +184,12 @@
   box-shadow: 0 0 0 3px rgba(204, 121, 81, 0.2);
 }
 
+.filter-group input[type="text"],
+.filter-group input[type="date"] {
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .filter-group select::placeholder,
 .filter-group input::placeholder {
   color: #adadad;
