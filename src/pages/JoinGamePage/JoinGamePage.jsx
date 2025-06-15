@@ -231,13 +231,13 @@ export default function JoinGamePage() {
               )}
             </div>
 
-            <div className="filter-icon" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+            <div className="filter-icon" ref={filterButtonRef} onClick={() => setIsFilterOpen(!isFilterOpen)}>
               <img src="/assets/img/filter-icon.svg" alt="Фильтр" />
               <span>Фильтр</span>
             </div>
 
             {isFilterOpen && (
-              <div className="filter-dropdown">
+              <div className="filter-dropdown" ref={filterRef}>
                 <div className="filter-group">
                   <label>Тип игры:</label>
                   <select
