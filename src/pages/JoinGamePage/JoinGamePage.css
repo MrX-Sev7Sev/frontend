@@ -247,7 +247,7 @@
 }
 
 .games-table tbody tr td:first-child {
-  color: #828282; /* Серый цвет для места проведения игры */
+  color: #943D2C; /* Цвет как у заголовков таблицы */
 }
 
 .games-table tbody tr::after {
@@ -257,6 +257,11 @@
   left: 0.5rem;
   right: 0.5rem;
   border-bottom: 1px solid #E2B07A; /* Подчеркивание для всей строки */
+}
+
+/* Цвет текста для всех ячеек таблицы */
+.games-table tbody tr td {
+  color: #943D2C; /* Цвет как у заголовков таблицы */
 }
 
 .games-table th:nth-child(1) {
@@ -269,16 +274,16 @@
 
 .games-table th {
   background: #E2B07A;
-  font-weight: 600;
-  color: #000000; /* Черный цвет для большинства заголовков */
+  color: #682b1f; /* Цвет как у заголовка страницы */
+  font-weight: medium;
+}
+
+.games-table td {
+  font-weight: bold;
 }
 
 .games-table thead tr {
   border-radius: 17%; /* Применяем border-radius к общей строке заголовков */
-}
-
-.games-table th:first-child {
-  color: #828282; /* Специфический цвет для заголовка "Место" */
 }
 
 .creator-info {

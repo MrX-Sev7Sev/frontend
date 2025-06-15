@@ -307,7 +307,7 @@ export default function JoinGamePage() {
                   <th>Место</th>
                   <th>Название комнаты</th>
                   <th>Игра</th>
-                  <th>Время</th>
+                <th>Дата</th>
                   <th>Создатель</th>
                 </tr>
               </thead>

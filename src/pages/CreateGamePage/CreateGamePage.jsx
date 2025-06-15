@@ -317,6 +317,7 @@ export default function CreateGamePage() {
                 onChange={(e) => setCustomLocation(e.target.value)}
                 placeholder="Введите место проведения"
                 required
+                maxLength={44}
               />
             </div>
           )}
@@ -328,6 +329,7 @@ export default function CreateGamePage() {
                 onChange={(e) => setFormData({ ...formData, room: e.target.value })}
                 placeholder="Введите аудиторию/место"
                 required
+                maxLength={44}
               />
             </div>
           )}
