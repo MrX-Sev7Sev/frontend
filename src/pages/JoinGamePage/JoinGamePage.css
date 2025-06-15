@@ -227,10 +227,26 @@
   border-bottom: 1px solid #E2B07A;
 }
 
+.games-table th:nth-child(1) {
+  border-radius: 16px 0 0 16px;
+}
+
+.games-table th:nth-child(5) {
+  border-radius: 0 16px 16px 0;
+}
+
 .games-table th {
-  background: #FCDDCB;
+  background: rgba(255, 188, 115, 0.28); /* Добавляем прозрачность 31% */
   font-weight: 600;
-  color: #943D2C;
+  color: #000000; /* Черный цвет для большинства заголовков */
+}
+
+.games-table thead tr {
+  border-radius: 17%; /* Применяем border-radius к общей строке заголовков */
+}
+
+.games-table th:first-child {
+  color: #828282; /* Специфический цвет для заголовка "Место" */
 }
 
 .creator-info {
