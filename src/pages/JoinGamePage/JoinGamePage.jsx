@@ -5,6 +5,118 @@ import NavigationSidebar from '../../components/NavigationSidebar';
 import { GamesAPI } from '../../api/games';
 import './JoinGamePage.css';
 
+// Массив с популярными играми
+const POPULAR_GAMES = [
+  {
+    id: 2,
+    title: 'Uno',
+    image: '/assets/games/uno.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 3,
+    title: 'Карты',
+    image: '/assets/games/cards.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 4,
+    title: 'Шахматы',
+    image: '/assets/games/chess.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 5,
+    title: 'Шашки',
+    image: '/assets/games/checkers.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 6,
+    title: 'Нарды',
+    image: '/assets/games/backgammon.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 7,
+    title: 'Мафия',
+    image: '/assets/games/mafia.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 8,
+    title: 'Монополия',
+    image: '/assets/games/monopoly.jpg',
+    genre: 'Экономическая'
+  },
+  {
+    id: 9,
+    title: 'Дженга',
+    image: '/assets/games/jenga.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 10,
+    title: 'Dungeons & Dragons',
+    image: '/assets/games/dnd.jpg',
+    genre: 'Ролевая'
+  },
+  {
+    id: 11,
+    title: 'Каркассон',
+    image: '/assets/games/carcassonn.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 12,
+    title: 'Бункер',
+    image: '/assets/games/bunker.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 13,
+    title: 'Пандемия',
+    image: '/assets/games/pandemic.jpg',
+    genre: 'Стратегическая'
+  },
+  {
+    id: 14,
+    title: 'Эрудит',
+    image: '/assets/games/scrabble.jpg',
+    genre: 'Логическая'
+  },
+  {
+    id: 15,
+    title: 'Алиас',
+    image: '/assets/games/alias.jpg',
+    genre: 'Социальная'
+  },
+  {
+    id: 16,
+    title: 'Имаджинариум',
+    image: '/assets/games/imaginarium.jpg',
+    genre: 'Креативная'
+  },
+  {
+    id: 17,
+    title: 'Свинтус',
+    image: '/assets/games/svintus.jpg',
+    genre: 'Карточная'
+  },
+  {
+    id: 18,
+    title: 'Крокодил',
+    image: '/assets/games/crocodile.jpg',
+    genre: 'Активная'
+  },
+  {
+    id: 1,
+    title: 'Добавить свою игру',
+    image: '/assets/games/custom.jpg',
+    genre: ''
+  },
+];
+
 export default function JoinGamePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -110,10 +222,11 @@ export default function JoinGamePage() {
                   onChange={(e) => setFilters({ ...filters, type: e.target.value, customType: '' })}
                 >
                   <option value="">Все</option>
-                  <option value="Uno">Uno</option>
-                  <option value="Шахматы">Шахматы</option>
-                  <option value="Карты">Карты</option>
-                  <option value="Дженга">Дженга</option>
+                  {POPULAR_GAMES.filter(game => game.title !== 'Добавить свою игру').map((game) => (
+                    <option key={game.id} value={game.title}>
+                      {game.title}
+                    </option>
+                  ))}
                   <option value="custom">Другое</option>
                 </select>
 
