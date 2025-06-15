@@ -65,7 +65,13 @@
 .no-games {
   text-align: center;
   padding: 2rem;
-  color: #7f8c8d;
+  color: #943D2C; /* Цвет как у заголовка */
+  font-weight: medium;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .join-page-container h1 {
@@ -302,7 +308,14 @@
 .no-games {
   text-align: center;
   padding: 2rem;
-  color: #7f8c8d;
+  color: #943D2C; /* Цвет как у заголовка */
+  font-weight: medium;
+  width: 150%; /* Соответствует ширине таблицы */
+  margin: 0 auto;
+  margin-left: -80px; /* Сдвигаем чуть левее */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .search-and-filters {
