@@ -180,7 +180,7 @@ export default function JoinGamePage() {
 
       // Место проведения: либо из списка, либо ручной ввод
       const matchesLocation = !filters.location || 
-        game.location.toLowerCase() === filters.location.toLowerCase() ||
+        game.location.toLowerCase().includes(filters.location.toLowerCase()) ||
         (filters.customLocation && game.location.toLowerCase().includes(filters.customLocation.toLowerCase()));
 
       // Дата
@@ -248,9 +248,10 @@ export default function JoinGamePage() {
                 >
                   <option value="">Все</option>
                   <option value="ГУК">Главный учебный корпус</option>
-                  <option value="РТФ">Радиотехнический корпус</option>
-                  <option value="УГИ">Уральский гуманитарный институт</option>
-                  <option value="ИЕНиМ">Институт естественных наук</option>
+                  <option value="УГИ">Уральский Гуманитарный Институт</option>
+                  <option value="ИРИТ-РТФ">Институт Радиоэлектронники и Информационных Технологий - РТФ</option>
+                  <option value="ФТИ">Физико-Технологический Институт</option>
+                  <option value="ХТИ">Химико-Технологический Институт</option>
                   <option value="custom">Другое</option>
                 </select>
 
