@@ -358,3 +358,16 @@
   gap: 1rem;
   z-index: 100;
 }
+
+/* Ховер-эффект для всей строки таблицы */
+.games-table tbody tr {
+  position: relative; /* Для позиционирования псевдоэлемента */
+}
+
+/* Альтернативный вариант с outline */
+.games-table tbody tr:hover {
+  outline: 2px solid #943D2C;
+  outline-offset: -3px;
+  border-radius: 16px;
+  position: relative;
+}
