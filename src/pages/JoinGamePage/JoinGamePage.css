@@ -78,6 +78,7 @@
 
 .search-container {
   flex: 1;
+  position: relative;
 }
 
 .search-container input {
@@ -92,6 +93,18 @@
   font-weight: 600;
 }
 
+.search-container .search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  transition: opacity 0.3s ease;
+}
+
+/* Иконка скрывается только при наличии текста в поле ввода через JS */
+
 .search-container input:focus {
   outline: none;
   border-color: #CC7951;
@@ -101,6 +114,7 @@
 .search-container input::placeholder {
   color: #adadad;
   opacity: 1;
+  padding-left: 25px;
 }
 
 .filter-icon {
