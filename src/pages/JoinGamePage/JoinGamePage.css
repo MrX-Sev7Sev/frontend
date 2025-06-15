@@ -273,7 +273,7 @@
   position: absolute;
   top: 115%; /* Прямо под кнопкой */
   left: auto; /* Позиционируем относительно кнопки */
-  right: -13.4rem; /* Прижимаем к правому краю */
+  right: -14.4rem; /* Прижимаем к правому краю */
   width: 100%;
   max-width: 300px;
   background: #FFF2EA;
