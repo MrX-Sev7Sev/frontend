@@ -62,6 +62,13 @@
   color: #7f8c8d;
 }
 
+.join-page-container h1 {
+  text-align: center;
+  color: #943D2C;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
 .search-and-filters {
   display: flex;
   align-items: center;
@@ -75,12 +82,14 @@
 
 .search-container input {
   width: 100%;
-  padding: 0.8rem;
+  padding: 12px 15px;
   border: 1px solid #E2B07A;
   border-radius: 8px;
   font-size: 1rem;
-  background: #FFF9F5;
+  background: #FFEDE2;
   transition: all 0.3s ease;
+  color: #9B4736;
+  font-weight: 600;
 }
 
 .search-container input:focus {
