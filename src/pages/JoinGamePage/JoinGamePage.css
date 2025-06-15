@@ -232,6 +232,10 @@
   position: relative;
 }
 
+.games-table tbody tr td:first-child {
+  color: #828282; /* Серый цвет для места проведения игры */
+}
+
 .games-table tbody tr::after {
   content: '';
   position: absolute;
@@ -250,7 +254,7 @@
 }
 
 .games-table th {
-  background: rgba(255, 188, 115, 0.28); /* Добавляем прозрачность 31% */
+  background: #E2B07A;
   font-weight: 600;
   color: #000000; /* Черный цвет для большинства заголовков */
 }
