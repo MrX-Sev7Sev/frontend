@@ -124,7 +124,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1rem;
-  background: white;
+  background: #FFEDE2; /* Цвет такой же, как у полей ввода */
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -133,7 +133,7 @@
 }
 
 .filter-icon:hover {
-  background: #f8f8f8; /* Светлый оттенок при наведении */
+  background: #FFEDE2; /* Светлый оттенок при наведении */
   transform: translateY(-1px); /* Поднимаем кнопку */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Увеличиваем тень */
 }
@@ -307,7 +307,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0.8rem 1rem;
-  background: white;
+  background: #FFEDE2;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -326,7 +326,7 @@
   right: -14.4rem; /* Прижимаем к правому краю */
   width: 100%;
   max-width: 300px;
-  background: #FFF2EA;
+  background: #FFEDE2;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   padding: 1rem;
