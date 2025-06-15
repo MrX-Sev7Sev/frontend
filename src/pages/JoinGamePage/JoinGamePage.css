@@ -224,7 +224,21 @@
 .games-table td {
   padding: 1rem;
   text-align: left;
-  border-bottom: 1px solid #E2B07A;
+  border-left: 0.5rem solid transparent; /* Добавляем отступ слева */
+  border-right: 0.5rem solid transparent; /* Добавляем отступ справа */
+}
+
+.games-table tbody tr {
+  position: relative;
+}
+
+.games-table tbody tr::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0.5rem;
+  right: 0.5rem;
+  border-bottom: 1px solid #E2B07A; /* Подчеркивание для всей строки */
 }
 
 .games-table th:nth-child(1) {
