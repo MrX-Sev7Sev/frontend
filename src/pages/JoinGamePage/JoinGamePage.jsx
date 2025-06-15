@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import NavigationSidebar from '../../components/NavigationSidebar';
@@ -130,6 +130,8 @@ export default function JoinGamePage() {
     customLocation: ''
   });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterRef = useRef(null);
+  const filterButtonRef = useRef(null);
 
   // Загрузка доступных игр
   useEffect(() => {
@@ -155,6 +157,20 @@ export default function JoinGamePage() {
       window.removeEventListener('storage', handleGamesUpdate);
     };
   }, [user?.email]);
+
+  // Закрытие фильтра при клике вне меню
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isFilterOpen && filterRef.current && !filterRef.current.contains(event.target) && !filterButtonRef.current.contains(event.target)) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFilterOpen]);
 
   // Функция для присоединения к игре
   const handleJoinGame = (gameId) => {
@@ -213,13 +229,13 @@ export default function JoinGamePage() {
             {searchQuery === '' && <img src="/assets/img/search-icon.svg" alt="Поиск" className="search-icon" />}
           </div>
 
-          <div className="filter-icon" onClick={() => setIsFilterOpen(!isFilterOpen)}>
+          <div className="filter-icon" ref={filterButtonRef} onClick={() => setIsFilterOpen(!isFilterOpen)}>
             <img src="/assets/img/filter-icon.svg" alt="Фильтр" />
             <span>Фильтр</span>
           </div>
 
           {isFilterOpen && (
-            <div className="filter-dropdown">
+            <div className="filter-dropdown" ref={filterRef}>
               <div className="filter-group">
                 <label>Тип игры:</label>
                 <select
