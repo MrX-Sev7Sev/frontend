@@ -234,6 +234,14 @@
   border-right: 0.5rem solid transparent; /* Добавляем отступ справа */
 }
 
+.games-table td:nth-child(3) span {
+  background: #FFEDE2; /* Цвет фона как у поля ввода */
+  border: 1px solid #E2B07A; /* Граница как у поля ввода */
+  border-radius: 8px; /* Закругленные края */
+  padding: 0.3rem 0.6rem; /* Уменьшаем внутренний отступ для компактности */
+  display: inline-block;
+}
+
 .games-table tbody tr {
   position: relative;
 }

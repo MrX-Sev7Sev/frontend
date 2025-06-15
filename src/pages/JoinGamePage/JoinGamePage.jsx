@@ -320,7 +320,7 @@ export default function JoinGamePage() {
                   >
                     <td>{game.location}</td>
                     <td>{game.name}</td>
-                    <td>{game.type}</td>
+                    <td><span>{game.type}</span></td>
                     <td>
                       {new Date(game.date).toLocaleDateString('ru-RU', {
                         day: 'numeric',
