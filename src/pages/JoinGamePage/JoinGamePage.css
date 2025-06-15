@@ -98,14 +98,34 @@
   box-shadow: 0 0 0 3px rgba(204, 121, 81, 0.2);
 }
 
+.search-container input::placeholder {
+  color: #adadad;
+  opacity: 1;
+}
+
 .filter-icon {
-  cursor: pointer;
-  padding: 0.8rem;
-  background: #CC7951;
-  border-radius: 8px;
+  position: relative;
+  margin-left: auto;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1rem;
+  background: white;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-icon:hover {
+  background: #f8f8f8; /* Светлый оттенок при наведении */
+  transform: translateY(-1px); /* Поднимаем кнопку */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Увеличиваем тень */
+}
+
+.filter-icon:active {
+  transform: translateY(0); /* Возвращаем на место при нажатии */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Уменьшаем тень */
 }
 
 .filter-icon img {
@@ -113,15 +133,27 @@
   height: 24px;
 }
 
+.filter-icon span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #828282;
+}
+
+
 .filter-dropdown {
-  margin-top: 1rem;
-  padding: 1rem;
+  position: absolute;
+  top: 100%; /* Прямо под кнопкой */
+  left: 0;
+  width: 100%; /* Ширина на всю доступную область */
+  max-width: 300px; /* Ограничиваем ширину для удобства */
   background: #FFF2EA;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Тень для выделения */
+  padding: 1rem;
+  display: flex;
+  flex-direction: column; /* Элементы в колонну */
   gap: 1rem;
+  z-index: 100; /* Чтобы меню было поверх других элементов */
 }
 
 .filter-group label {
@@ -181,4 +213,12 @@
   text-align: center;
   padding: 2rem;
   color: #7f8c8d;
+}
+
+.search-and-filters {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
 }

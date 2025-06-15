@@ -98,6 +98,7 @@ export default function JoinGamePage() {
 
           <div className="filter-icon" onClick={() => setIsFilterOpen(!isFilterOpen)}>
             <img src="/assets/img/filter-icon.svg" alt="Фильтр" />
+            <span>Фильтр</span>
           </div>
 
           {isFilterOpen && (
