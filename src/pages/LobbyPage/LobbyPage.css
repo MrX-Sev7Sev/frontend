@@ -13,7 +13,8 @@
 .lobby-header {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
-  border-bottom: 2px solid #eee;
+  border-bottom: 3px solid #943D2C;
+  width: calc(420px + 600px + 7rem);
 }
 
 .lobby-header h1 {
@@ -159,13 +160,13 @@
 /* Секция с изображением и списком игроков */
 .lobby-avatar-section {
   flex: 1;
-  max-width: 280px;
+  max-width: 420px;
 }
 
 /* Изображение игры */
 .game-avatar {
-  width: 280px;
-  height: 280px;
+  width: 420px;
+  height: 420px;
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
