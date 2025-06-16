@@ -11,8 +11,8 @@
 }
 
 .lobby-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0;
   border-bottom: 3px solid #943D2C;
   width: calc(420px + 600px + 7rem);
   display: flex;
@@ -511,4 +511,24 @@
   transform: translateY(-50%);
   z-index: 1;
   width: 6rem;
+}
+
+.lobby-info span {
+  margin-top: -0.3rem;
+}
+
+.lobby-info .info-item:nth-child(1) span {
+    margin-left: -6.7rem
+}
+
+.lobby-info .info-item:nth-child(2) span {
+  margin-left: -6.2rem
+}
+
+.lobby-info .info-item:nth-child(3) span {
+  margin-left: -0.7rem
+}
+
+.lobby-info .info-item:nth-child(4) span {
+  margin-left: -1.4rem
 }
