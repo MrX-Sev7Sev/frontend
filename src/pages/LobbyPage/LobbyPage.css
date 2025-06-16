@@ -1,13 +1,13 @@
 .lobby-container {
   display: flex;
   min-height: 100vh;
+  background: #fdd1a1;
 }
 
 .lobby-content {
   flex: 1;
   padding: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 250px;
 }
 
 .lobby-header {
@@ -17,8 +17,9 @@
 }
 
 .lobby-title {
-  color: #2c3e50;
+  color: #943D2C;
   margin-bottom: 0.5rem;
+  font-size: 2rem;
 }
 
 .lobby-meta {
@@ -28,7 +29,7 @@
 }
 
 .game-type {
-  background: #3498db;
+  background: #CC7951;
   color: white;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
@@ -50,7 +51,7 @@
 
 .datetime {
   font-size: 1.2rem;
-  color: #2c3e50;
+  color: #943D2C;
   font-weight: 500;
 }
 
@@ -60,7 +61,7 @@
 }
 
 .player-card {
-  background: #f8f9fa;
+  background: #FFEDE2;
   padding: 1rem;
   border-radius: 8px;
   display: flex;
@@ -69,8 +70,8 @@
 }
 
 .admin-badge {
-  background: #f1c40f;
-  color: #2c3e50;
+  background: #FFE4D6;
+  color: #B3593D;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
   margin-left: 1rem;
@@ -91,7 +92,7 @@
 }
 
 .info-card h4 {
-  color: #7f8c8d;
+  color: #943D2C;
   margin-bottom: 0.5rem;
   font-size: 0.9rem;
 }
@@ -135,11 +136,12 @@
 
 .player-name {
   font-size: 0.9rem;
+  color: #943D2C;
 }
 
 .admin-badge {
-  background: #f1c40f;
-  color: #2c3e50;
+  background: #FFE4D6;
+  color: #B3593D;
   padding: 0.2rem 0.5rem;
   border-radius: 5px;
   margin-left: 1rem;
@@ -185,7 +187,7 @@
   gap: 1rem;
   margin-bottom: 0.5rem;
   padding: 0.75rem;
-  background: #f8f9fa;
+  background: #FFEDE2;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
@@ -199,6 +201,7 @@
 .player-name {
   font-size: 1rem;
   font-weight: 500;
+  color: #943D2C;
 }
 
 .admin-badge {
@@ -217,7 +220,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  background: #f8f9fa;
+  background: #FFEDE2;
   padding: 1.5rem;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -228,15 +231,39 @@
   gap: 1rem;
   align-items: center;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e9ecef;
+  border-bottom: 1px solid #E2B07A;
 }
 
 .info-item label {
   font-weight: 600;
   min-width: 150px;
+  color: #943D2C;
 }
 
 .info-item span {
   flex: 1;
-  color: #495057;
+  color: #9B4736;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .lobby-content {
+    margin-left: 0;
+    padding: 1rem;
+    margin-top: 60px;
+  }
+
+  .lobby-main {
+    flex-direction: column;
+  }
+
+  .lobby-avatar-section {
+    max-width: 100%;
+    align-items: center;
+  }
+
+  .game-avatar {
+    width: 100%;
+    max-width: 280px;
+  }
 }
