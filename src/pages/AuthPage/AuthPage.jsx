@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
+import { UsersAPI } from '../../api/users';
 import './AuthPage.css';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '' });
+  const [nickname, setNickname] = useState(''); // Новое поле для регистрации
+  const [errors, setErrors] = useState({ email: '', password: '', general: '' });
   const [isLoginTab, setIsLoginTab] = useState(true);
-  const { login } = useAuth();
+  const { login, register } = useAuth();
 
   // Валидация формы
   const validateForm = () => {
@@ -31,23 +33,36 @@ export default function AuthPage() {
     return isValid;
   };
 
-  // Обработка отправки формы
-  const handleSubmit = async (e) => {
+  // Обработка входа
+  const handleLogin = async (e) => {
     e.preventDefault();
     
     if (validateForm()) {
       try {
-        // Заглушка для API-запроса
-        const fakeResponse = await new Promise(resolve => 
-          setTimeout(() => resolve({ 
-            token: 'fake-jwt-token',
-            user: { email }
-          }), 1000)
-        );
+        // Проверяем, существует ли пользователь
+        const profile = UsersAPI.getProfile(email); // Используем UsersAPI
+        if (!profile || profile.password !== password) {
+          throw new Error('Неверный email или пароль');
+        }
 
-        login(fakeResponse.token);
+        // Авторизация
+        login('fake-jwt-token', email);
       } catch (error) {
-        setErrors({ ...errors, general: 'Ошибка авторизации' });
+        setErrors({ ...errors, general: error.message });
+      }
+    }
+  };
+
+  // Обработка регистрации
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    
+    if (validateForm()) {
+      const errorMessage = register(email, password, nickname);
+      if (errorMessage) {
+        setErrors({ ...errors, general: errorMessage });
+      } else {
+        login('fake-jwt-token', email); // Авторизация после регистрации
       }
     }
   };
@@ -72,7 +87,18 @@ export default function AuthPage() {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={isLoginTab ? handleLogin : handleRegister}>
+          {!isLoginTab && (
+            <div className="auth-input-container">
+              <input
+                type="text"
+                placeholder="Имя пользователя"
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+            </div>
+          )}
+
           <div className="auth-inputs">
             {/* Поле Email */}
             <div className={`auth-input-container ${errors.email ? 'has-error' : ''}`}>

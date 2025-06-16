@@ -1,37 +1,46 @@
-import { createContext, useContext, useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { createContext, useContext, useState } from 'react';
+import { UsersAPI } from '../api/users';
 
 const AuthContext = createContext();
-export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }) {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setUser({ token, email: localStorage.getItem('email') });
-    }
-  }, []);
 
   const login = (token, email) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('email', email);
-    setUser({ token, email });
-    navigate('/main');
+    const profile = UsersAPI.getProfile(email);
+    if (profile) {
+      setUser({ ...profile, token });
+    } else {
+      console.error('Профиль не найден');
+    }
+  };
+
+  const register = (email, password, nickname) => {
+    if (UsersAPI.userExists(email)) {
+      return 'Пользователь с таким email уже существует';
+    }
+
+    const profileData = {
+      nickname,
+      email,
+      password,
+      vkLink: 'https://vk.com/',
+      avatar: '/assets/img/avatar-default.png',
+    };
+
+    UsersAPI.saveProfile(email, profileData);
+    return null; // Успешная регистрация
   };
 
   const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('email');
     setUser(null);
-    navigate('/login');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
+
+export const useAuth = () => useContext(AuthContext);

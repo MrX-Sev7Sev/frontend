@@ -17,9 +17,9 @@ export default function ProfilePage() {
     if (user) {
       const profile = UsersAPI.getProfile(user.email);
       setEditedName(profile.nickname || '');
-      setVkLink(profile.vkLink || '');
+      setVkLink(profile.vkLink || 'https://vk.com/');
       setEmail(profile.email || user.email || '');
-      setPassword(profile.password || ''); // Загружаем пароль
+      setPassword(profile.password || '');
       setAvatar(profile.avatar || '/assets/img/avatar-default.png');
     }
   }, [user]);
@@ -30,12 +30,21 @@ export default function ProfilePage() {
         nickname: editedName,
         vkLink,
         email,
-        password, // Сохраняем пароль
+        password,
         avatar,
       };
       UsersAPI.saveProfile(user.email, profileData);
     }
     setIsEditing(false);
+  };
+
+  const handleVkLinkChange = (value) => {
+    if (!value.startsWith('https://vk.com/')) {
+      // Если пользователь удалил или изменил шаблон, добавляем его автоматически
+      setVkLink(`https://vk.com/${value.replace('https://vk.com/', '')}`);
+    } else {
+      setVkLink(value);
+    }
   };
 
   return (
@@ -86,40 +95,22 @@ export default function ProfilePage() {
                 {isEditing ? (
                   <input
                     type="text"
-                    value={vkLink}
-                    onChange={(e) => setVkLink(e.target.value)}
-                    placeholder="https://vk.com/your_id"
+                    value={vkLink.includes('https://vk.com/') ? vkLink : `https://vk.com/${vkLink}`}
+                    onChange={(e) => handleVkLinkChange(e.target.value)}
                   />
                 ) : (
-                  <span>{vkLink || 'Не указано'}</span>
+                  <span>{vkLink === 'https://vk.com/' ? 'Не указано' : vkLink}</span>
                 )}
               </div>
 
               <div className="info-item">
                 <label>Email:</label>
-                {isEditing ? (
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                ) : (
-                  <span>{email || 'Не указано'}</span>
-                )}
+                <span>{email || 'Не указано'}</span> {/* Логин (email) всегда только для чтения */}
               </div>
 
               <div className="info-item">
                 <label>Пароль:</label>
-                {isEditing ? (
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Введите новый пароль"
-                  />
-                ) : (
-                  <span>{password ? '••••••••' : '••••••••'}</span> // Пароль всегда скрыт
-                )}
+                <span>{password ? '••••••••' : '••••••••'}</span> {/* Пароль всегда только для чтения */}
               </div>
 
               <div className="profile-actions">
