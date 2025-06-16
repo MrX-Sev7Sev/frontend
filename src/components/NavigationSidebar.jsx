@@ -15,7 +15,7 @@ export default function NavigationSidebar() {
             `nav-button ${isActive ? 'active' : ''}`
           }
         >
-          <img className='sidebar-icon' src="../../public/assets/img/sidebar-home-icon.svg" alt="Главная"></img>
+          <img className='sidebar-icon' src="/assets/img/sidebar-home-icon.svg" alt="Главная"></img>
           Главная
         </NavLink>
         
@@ -25,7 +25,7 @@ export default function NavigationSidebar() {
             `nav-button ${isActive ? 'active' : ''}`
           }
         >
-          <img className='sidebar-icon' src="../../public/assets/img/sidebar-add-icon.svg" alt="Создать игру"></img>          
+          <img className='sidebar-icon' src="/assets/img/sidebar-add-icon.svg" alt="Создать игру"></img>          
           Создать игру
         </NavLink>
 
@@ -35,7 +35,7 @@ export default function NavigationSidebar() {
             `nav-button ${isActive ? 'active' : ''}`
           }
         >
-          <img className='sidebar-icon' src="../../public/assets/img/sidebar-search-icon.svg" alt="Поиск игр"></img>
+          <img className='sidebar-icon' src="/assets/img/sidebar-search-icon.svg" alt="Поиск игр"></img>
         Присоединиться
         </NavLink>
 
@@ -45,14 +45,14 @@ export default function NavigationSidebar() {
             `nav-button ${isActive ? 'active' : ''}`
           }
         >
-          <img className='sidebar-icon' src="../../public/assets/img/sidebar-profile-icon.svg" alt="Профиль"></img>
+          <img className='sidebar-icon' src="/assets/img/sidebar-profile-icon.svg" alt="Профиль"></img>
           Личный профиль
         </NavLink>
       </div>
 
       <div className="sidebar-photo-container">
           <img 
-            src="../../public/assets/img/sidebar-photo.jpg" 
+            src="/assets/img/sidebar-photo.jpg" 
             alt="Фоновое изображение" 
             className="sidebar-photo"
           />

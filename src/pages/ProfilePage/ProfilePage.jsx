@@ -10,8 +10,8 @@ export default function ProfilePage() {
   const [editedName, setEditedName] = useState('');
   const [vkLink, setVkLink] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [avatar, setAvatar] = useState('');
+  const [avatarFile, setAvatarFile] = useState(null);
 
   useEffect(() => {
     if (user) {
@@ -19,7 +19,6 @@ export default function ProfilePage() {
       setEditedName(profile.nickname || '');
       setVkLink(profile.vkLink || 'https://vk.com/');
       setEmail(profile.email || user.email || '');
-      setPassword(profile.password || '');
       setAvatar(profile.avatar || '/assets/img/avatar-default.png');
     }
   }, [user]);
@@ -30,20 +29,18 @@ export default function ProfilePage() {
         nickname: editedName,
         vkLink,
         email,
-        password,
-        avatar,
+        avatar: avatarFile ? URL.createObjectURL(avatarFile) : avatar, // Обновляем аватар, если файл загружен
       };
       UsersAPI.saveProfile(user.email, profileData);
     }
     setIsEditing(false);
   };
 
-  const handleVkLinkChange = (value) => {
-    if (!value.startsWith('https://vk.com/')) {
-      // Если пользователь удалил или изменил шаблон, добавляем его автоматически
-      setVkLink(`https://vk.com/${value.replace('https://vk.com/', '')}`);
-    } else {
-      setVkLink(value);
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAvatarFile(file);
+      setAvatar(URL.createObjectURL(file)); // Показываем превью новой аватарки
     }
   };
 
@@ -69,7 +66,7 @@ export default function ProfilePage() {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => setAvatar(URL.createObjectURL(e.target.files[0]))}
+                    onChange={handleAvatarChange}
                     className="avatar-upload"
                   />
                 )}
@@ -95,8 +92,8 @@ export default function ProfilePage() {
                 {isEditing ? (
                   <input
                     type="text"
-                    value={vkLink.includes('https://vk.com/') ? vkLink : `https://vk.com/${vkLink}`}
-                    onChange={(e) => handleVkLinkChange(e.target.value)}
+                    value={vkLink}
+                    onChange={(e) => setVkLink(e.target.value)}
                   />
                 ) : (
                   <span>{vkLink === 'https://vk.com/' ? 'Не указано' : vkLink}</span>
@@ -105,12 +102,7 @@ export default function ProfilePage() {
 
               <div className="info-item">
                 <label>Email:</label>
-                <span>{email || 'Не указано'}</span> {/* Логин (email) всегда только для чтения */}
-              </div>
-
-              <div className="info-item">
-                <label>Пароль:</label>
-                <span>{password ? '••••••••' : '••••••••'}</span> {/* Пароль всегда только для чтения */}
+                <span>{email || 'Не указано'}</span>
               </div>
 
               <div className="profile-actions">

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
+import { UsersAPI } from '../../api/users';
 import NavigationSidebar from '../../components/NavigationSidebar';
 import { GamesAPI } from '../../api/games';
 import './LobbyPage.css';
@@ -33,6 +34,7 @@ const getGameImage = (type) => {
 export default function LobbyPage() {
   const { gameId } = useParams();
   const { user } = useAuth();
+  const profile = UsersAPI.getProfile(user.email);
   const navigate = useNavigate();
   const [game, setGame] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -176,8 +178,8 @@ export default function LobbyPage() {
                       <span className="admin-badge">Админ</span>
                     )}
                     <img 
-                      src="/assets/img/avatar-default.png" 
-                      alt="Аватар игрока" 
+                      src={profile.avatar || '/assets/img/avatar-default.png'} 
+                      alt="Аватар" 
                       className="player-avatar"
                     />
                     <span className="player-name">

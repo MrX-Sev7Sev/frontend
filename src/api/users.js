@@ -6,10 +6,9 @@ export const UsersAPI = {
     localStorage.setItem('profiles', JSON.stringify(profiles));
   },
 
-  // Получение профиля
   getProfile: (userId) => {
     const profiles = JSON.parse(localStorage.getItem('profiles')) || {};
-    return profiles[userId] || null;
+    return profiles[userId] || {};
   },
 
   // Проверка существования пользователя
