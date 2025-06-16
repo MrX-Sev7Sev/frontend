@@ -173,7 +173,7 @@ export default function LobbyPage() {
                 {visiblePlayers.map((player, index) => (
                   <div className="player-card">
                     {game.admin === player && (
-                      <span className="admin-badge">👑 Создатель</span>
+                      <span className="admin-badge">Админ</span>
                     )}
                     <img 
                       src="/assets/img/avatar-default.png" 
