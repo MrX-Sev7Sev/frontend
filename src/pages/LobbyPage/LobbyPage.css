@@ -437,3 +437,78 @@
   font-size: 0.8rem;
   font-weight: 500;
 }
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #FFEDE2;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Убедимся, что карточка занимает всю ширину */
+}
+
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #943D2C;
+  flex: 1; /* Растягиваем текст на всю доступную ширину */
+}
+
+.admin-badge {
+  background: #FFE4D6;
+  color: #B3593D;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-left: auto; /* Автоматический отступ, чтобы значок был справа */
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #FFEDE2;
+  border-radius: 12px 12px 12px 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  position: relative; /* Добавляем относительное позиционирование */
+  width: 24.7rem;
+}
+
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.player-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #943D2C;
+}
+
+.admin-badge {
+  background: #FFE4D6;
+  color: #B3593D;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  position: absolute;
+  left: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 6rem;
+}

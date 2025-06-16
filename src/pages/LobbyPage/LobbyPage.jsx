@@ -146,7 +146,10 @@ export default function LobbyPage() {
 
               <div className="players-list">
                 {visiblePlayers.map((player, index) => (
-                  <div key={index} className="player-card">
+                  <div className="player-card">
+                    {game.admin === player && (
+                      <span className="admin-badge">👑 Создатель</span>
+                    )}
                     <img 
                       src="/assets/img/avatar-default.png" 
                       alt="Аватар игрока" 
@@ -154,9 +157,6 @@ export default function LobbyPage() {
                     />
                     <span className="player-name">
                       {player || 'Неизвестный игрок'}
-                      {game.admin === player && (
-                        <span className="admin-badge">👑 Создатель</span>
-                      )}
                     </span>
                   </div>
                 ))}
