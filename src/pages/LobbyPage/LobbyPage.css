@@ -356,3 +356,84 @@
   transform: translateY(0);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+.players-gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 420px;
+  position: relative;
+}
+
+.players-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+.gallery-button {
+  background: #cc7951;
+  color: white;
+  border: none;
+  padding: 0.33rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.gallery-button.disabled {
+  background: #e2b07a;
+  cursor: not-allowed;
+}
+
+.gallery-button:not(.disabled):hover {
+  background: #b3593d;
+  transform: scale(1.1);
+}
+
+.gallery-button img {
+  width: 50px;
+  height: 50px;
+}
+
+.player-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: #FFEDE2;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.player-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.player-name {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #943D2C;
+}
+
+.admin-badge {
+  margin-left: 0.5rem;
+  background: #FFE4D6;
+  color: #B3593D;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}

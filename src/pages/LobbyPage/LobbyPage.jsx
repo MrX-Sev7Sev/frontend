@@ -1,30 +1,9 @@
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import NavigationSidebar from '../../components/NavigationSidebar';
 import { GamesAPI } from '../../api/games';
 import './LobbyPage.css';
-
-const GAME_GENRES = {
-  'Uno': 'Карточная',
-  'Карты': 'Карточная',
-  'Шахматы': 'Стратегическая',
-  'Шашки': 'Стратегическая',
-  'Нарды': 'Стратегическая',
-  'Мафия': 'Социальная',
-  'Монополия': 'Экономическая',
-  'Дженга': 'Активная',
-  'Dungeons & Dragons': 'Ролевая',
-  'Каркассон': 'Стратегическая',
-  'Бункер': 'Социальная',
-  'Пандемия': 'Стратегическая',
-  'Эрудит': 'Логическая',
-  'Алиас': 'Социальная',
-  'Имаджинариум': 'Креативная',
-  'Свинтус': 'Карточная',
-  'Крокодил': 'Активная',
-  'Добавить свою игру': 'Другая'
-};
 
 export default function LobbyPage() {
   const { gameId } = useParams();
@@ -32,6 +11,7 @@ export default function LobbyPage() {
   const navigate = useNavigate();
   const [game, setGame] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [currentPlayerIndex, setCurrentPlayerIndex] = useState(0);
 
   useEffect(() => {
     const loadGame = () => {
@@ -55,53 +35,16 @@ export default function LobbyPage() {
     };
   }, [gameId, navigate]);
 
-  const getGameImage = (type) => {
-    const images = {
-      'Uno': '/assets/games/uno.jpg',
-      'Карты': '/assets/games/cards.jpg',
-      'Шахматы': '/assets/games/chess.jpg',
-      'Шашки': '/assets/games/checkers.jpg',
-      'Нарды': '/assets/games/backgammon.jpg',
-      'Мафия': '/assets/games/mafia.jpg',
-      'Монополия': '/assets/games/monopoly.jpg',
-      'Дженга': '/assets/games/jenga.jpg',
-      'Dungeons & Dragons': '/assets/games/dnd.jpg',
-      'Каркассон': '/assets/games/carcassonn.jpg',
-      'Бункер': '/assets/games/bunker.jpg',
-      'Пандемия': '/assets/games/pandemic.jpg',
-      'Эрудит': '/assets/games/scrabble.jpg',
-      'Алиас': '/assets/games/alias.jpg',
-      'Имаджинариум': '/assets/games/imaginarium.jpg',
-      'Свинтус': '/assets/games/svintus.jpg',
-      'Крокодил': '/assets/games/crocodile.jpg',
-      'default': '/assets/games/custom.jpg'
-    };
-
-    // Если тип игры не в списке, возвращаем custom.jpg
-    return images[type] || images.default;
+  const handleNextPlayers = () => {
+    if (currentPlayerIndex + 3 < game.players.length) {
+      setCurrentPlayerIndex((prev) => prev + 1);
+    }
   };
 
-  const handleDeleteGame = () => {
-    const updatedGames = GamesAPI.getAll().filter(g => g.id !== Number(gameId));
-    GamesAPI.save(updatedGames);
-    navigate('/main');
-  };
-
-  const handleLeaveGame = () => {
-    const updatedGames = GamesAPI.getAll()
-      .map(game => {
-        if (game.id === Number(gameId)) {
-          return {
-            ...game,
-            players: game.players.filter(p => p !== user?.email)
-          };
-        }
-        return game;
-      })
-      .filter(g => g.players.length > 0);
-
-    GamesAPI.save(updatedGames);
-    navigate('/main');
+  const handlePrevPlayers = () => {
+    if (currentPlayerIndex > 0) {
+      setCurrentPlayerIndex((prev) => prev - 1);
+    }
   };
 
   if (isLoading) {
@@ -129,6 +72,11 @@ export default function LobbyPage() {
   const isAdmin = game.admin === user?.email;
   const isParticipant = game.players.includes(user?.email);
 
+  const visiblePlayers = game.players.slice(
+    currentPlayerIndex,
+    currentPlayerIndex + 3
+  );
+
   return (
     <div className="lobby-container">
       <NavigationSidebar />
@@ -138,14 +86,33 @@ export default function LobbyPage() {
           {isAdmin ? (
             <button 
               className="delete-button"
-              onClick={handleDeleteGame}
+              onClick={() => {
+                const updatedGames = GamesAPI.getAll().filter(g => g.id !== Number(gameId));
+                GamesAPI.save(updatedGames);
+                navigate('/main');
+              }}
             >
               Удалить комнату
             </button>
           ) : isParticipant ? (
             <button 
               className="leave-button"
-              onClick={handleLeaveGame}
+              onClick={() => {
+                const updatedGames = GamesAPI.getAll()
+                  .map(game => {
+                    if (game.id === Number(gameId)) {
+                      return {
+                        ...game,
+                        players: game.players.filter(p => p !== user?.email)
+                      };
+                    }
+                    return game;
+                  })
+                  .filter(g => g.players.length > 0);
+
+                GamesAPI.save(updatedGames);
+                navigate('/main');
+              }}
             >
               Покинуть комнату
             </button>
@@ -153,28 +120,35 @@ export default function LobbyPage() {
         </div>
 
         <div className="lobby-main">
-          {/* Секция с изображением и списком игроков */}
           <div className="lobby-avatar-section">
             <div className="game-avatar">
               <img 
-                src={getGameImage(game.type)} 
+                src={game.image || '/assets/games/custom.jpg'} 
                 alt="Аватар игры" 
               />
             </div>
-            {/* Список игроков */}
+
             <h3>
               Участники
               <span className="players-count">
-                {game?.players?.length || 0}/{game?.maxPlayers || '∞'} игроков
+                {game.players.length}/{game.maxPlayers || '∞'} игроков
               </span>
             </h3>
-            <div className="players-list">
-              {game?.players
-                ?.filter(player => player !== null) // Фильтруем null-игроков
-                ?.map((player, index) => (
+
+            <div className="players-gallery">
+              <button
+                className={`gallery-button up-button ${currentPlayerIndex === 0 ? 'disabled' : ''}`}
+                onClick={handlePrevPlayers}
+                disabled={currentPlayerIndex === 0}
+              >
+                <img src="/assets/img/arrow-up.svg" alt="Вверх" />
+              </button>
+
+              <div className="players-list">
+                {visiblePlayers.map((player, index) => (
                   <div key={index} className="player-card">
                     <img 
-                      src="/assets/img/avatar-default.png" // Дефолтная аватарка
+                      src="/assets/img/avatar-default.png" 
                       alt="Аватар игрока" 
                       className="player-avatar"
                     />
@@ -186,31 +160,39 @@ export default function LobbyPage() {
                     </span>
                   </div>
                 ))}
+              </div>
+
+              <button
+                className={`gallery-button down-button ${currentPlayerIndex + 3 >= game.players.length ? 'disabled' : ''}`}
+                onClick={handleNextPlayers}
+                disabled={currentPlayerIndex + 3 >= game.players.length}
+              >
+                <img src="/assets/img/arrow-down.svg" alt="Вниз" />
+              </button>
             </div>
           </div>
 
-          {/* Секция с информацией о комнате */}
           <div className="lobby-info">
             <div className="info-item">
               <label>Название комнаты:</label>
-              <span>{game?.name}</span>
+              <span>{game.name}</span>
             </div>
             <div className="info-item">
               <label>Игра:</label>
-              <span>{game?.type}</span>
+              <span>{game.type}</span>
             </div>
             <div className="info-item">
               <label>Жанр:</label>
-              <span>{game?.genre || 'Другая'}</span>
+              <span>{game.genre || 'Другая'}</span>
             </div>
             <div className="info-item">
               <label>Место проведения:</label>
-              <span>{game?.location}</span>
+              <span>{game.location}</span>
             </div>
             <div className="info-item">
               <label>Дата и время:</label>
               <span>
-                {game?.date ? new Date(game.date).toLocaleString('ru-RU', {
+                {game.date ? new Date(game.date).toLocaleString('ru-RU', {
                   day: 'numeric',
                   month: 'long',
                   year: 'numeric',
@@ -221,8 +203,6 @@ export default function LobbyPage() {
             </div>
           </div>
         </div>
-
-        {/* Кнопки действий удалены из этого места и перемещены в header */}
       </div>
     </div>
   );
