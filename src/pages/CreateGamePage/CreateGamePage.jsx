@@ -259,6 +259,7 @@ export default function CreateGamePage() {
                   onChange={(e) => setFormData({ ...formData, customType: e.target.value })}
                   placeholder="Введите название игры"
                   required
+                  maxLength={30}
                 />
               </div>
               <div className="custom-game-input">
@@ -269,6 +270,7 @@ export default function CreateGamePage() {
                   onChange={(e) => setFormData({ ...formData, customGenre: e.target.value })}
                   placeholder="Введите жанр игры"
                   required
+                  maxLength={30}
                 />
               </div>
             </>
