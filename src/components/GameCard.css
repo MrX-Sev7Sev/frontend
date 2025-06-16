@@ -92,3 +92,15 @@
   align-self: flex-end; /* Выравниваем по нижнему краю */
   margin-right: auto; /* Сдвигаем влево */
 }
+
+.gamecard-admin-badge {
+  background: #FFE4D6;
+  color: #B3593D;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  position: absolute;
+  top: -1.5rem; /* Располагаем значок над количеством игроков */
+  right: 0;
+}
