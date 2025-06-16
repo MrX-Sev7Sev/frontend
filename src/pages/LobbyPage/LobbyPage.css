@@ -223,6 +223,7 @@
 .lobby-info {
   flex: 1;
   max-width: 600px;
+  height: 510px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
