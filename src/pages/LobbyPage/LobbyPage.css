@@ -15,6 +15,9 @@
   padding-bottom: 1.5rem;
   border-bottom: 3px solid #943D2C;
   width: calc(420px + 600px + 7rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .lobby-header h1 {
@@ -248,6 +251,44 @@
   color: #9B4736;
 }
 
+/* Стили для кнопок в header */
+.lobby-header .delete-button,
+.lobby-header .leave-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background-color: #CC7951;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  opacity: 0.9;
+}
+
+.lobby-header .delete-button:hover,
+.lobby-header .leave-button:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lobby-header .delete-button:active,
+.lobby-header .leave-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lobby-header .delete-button {
+  background-color: #CC7951;
+}
+
+.lobby-header .leave-button {
+  background-color: #FFF9F5;
+  color: #CC7951;
+  border: 1px solid #CC7951;
+}
+
 /* Адаптивность */
 @media (max-width: 768px) {
   .lobby-content {
@@ -269,4 +310,32 @@
     width: 100%;
     max-width: 280px;
   }
+}
+
+/* Стили для кнопок в header, соответствующие CreateGamePage */
+.lobby-header .delete-button,
+.lobby-header .leave-button {
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  color: white;
+  background-color: #CC7951;
+  opacity: 0.9;
+}
+
+.lobby-header .delete-button:hover,
+.lobby-header .leave-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.lobby-header .delete-button:active,
+.lobby-header .leave-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

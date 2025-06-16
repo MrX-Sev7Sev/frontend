@@ -135,6 +135,21 @@ export default function LobbyPage() {
       <div className="lobby-content">
         <div className="lobby-header">
           <h1>{game?.name || 'Неизвестная игра'}</h1>
+          {isAdmin ? (
+            <button 
+              className="delete-button"
+              onClick={handleDeleteGame}
+            >
+              Удалить комнату
+            </button>
+          ) : isParticipant ? (
+            <button 
+              className="leave-button"
+              onClick={handleLeaveGame}
+            >
+              Покинуть комнату
+            </button>
+          ) : null}
         </div>
 
         <div className="lobby-main">
@@ -202,24 +217,7 @@ export default function LobbyPage() {
           </div>
         </div>
 
-        {/* Кнопки действий */}
-        <div className="lobby-actions">
-          {isAdmin ? (
-            <button 
-              className="delete-button"
-              onClick={handleDeleteGame}
-            >
-              Удалить комнату
-            </button>
-          ) : isParticipant ? (
-            <button 
-              className="leave-button"
-              onClick={handleLeaveGame}
-            >
-              Покинуть комнату
-            </button>
-          ) : null}
-        </div>
+        {/* Кнопки действий удалены из этого места и перемещены в header */}
       </div>
     </div>
   );
