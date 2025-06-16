@@ -12,6 +12,7 @@ export default function ProfilePage() {
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState('');
   const [avatarFile, setAvatarFile] = useState(null);
+  const [password, setPassword] = useState('••••••••');
 
   useEffect(() => {
     if (user) {
@@ -20,6 +21,7 @@ export default function ProfilePage() {
       setVkLink(profile.vkLink || 'https://vk.com/');
       setEmail(profile.email || user.email || '');
       setAvatar(profile.avatar || '/assets/img/avatar-default.png');
+      setPassword('•'.repeat(profile.password?.length || 0));
     }
   }, [user]);
 
@@ -103,6 +105,12 @@ export default function ProfilePage() {
               <div className="info-item">
                 <label>Email:</label>
                 <span>{email || 'Не указано'}</span>
+              </div>
+
+              {/* Новое поле "Пароль" */}
+              <div className="info-item">
+                <label>Пароль:</label>
+                <span>{password || '••••••••'}</span>
               </div>
 
               <div className="profile-actions">
