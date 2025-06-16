@@ -15,7 +15,7 @@
   position: relative;
   left: -5.5rem;
   top: 5rem;
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -69,6 +69,7 @@
 
 .profile-info {
   flex: 1;
+  min-width: 500px;
   background: #FFF2EA;
   padding: 2rem;
   border-radius: 12px;
@@ -121,12 +122,12 @@
 }
 
 .save-button {
-  background: #27ae60;
+  background: #CC7951;
   color: white;
 }
 
 .cancel-button {
-  background: #e74c3c;
+  background: #CC7951;
   color: white;
 }
 
