@@ -19,6 +19,7 @@ export default function ProfilePage() {
       setEditedName(profile.nickname || '');
       setVkLink(profile.vkLink || '');
       setEmail(profile.email || user.email || '');
+      setPassword(profile.password || ''); // Загружаем пароль
       setAvatar(profile.avatar || '/assets/img/avatar-default.png');
     }
   }, [user]);
@@ -29,7 +30,7 @@ export default function ProfilePage() {
         nickname: editedName,
         vkLink,
         email,
-        password,
+        password, // Сохраняем пароль
         avatar,
       };
       UsersAPI.saveProfile(user.email, profileData);
@@ -68,7 +69,7 @@ export default function ProfilePage() {
 
             <div className="profile-info">
               <div className="info-item">
-                <label>Nickname:</label>
+                <label>Имя пользователя:</label>
                 {isEditing ? (
                   <input
                     type="text"
@@ -81,7 +82,7 @@ export default function ProfilePage() {
               </div>
 
               <div className="info-item">
-                <label>VK Link:</label>
+                <label>Ссылка на VK:</label>
                 {isEditing ? (
                   <input
                     type="text"
@@ -108,7 +109,7 @@ export default function ProfilePage() {
               </div>
 
               <div className="info-item">
-                <label>Password:</label>
+                <label>Пароль:</label>
                 {isEditing ? (
                   <input
                     type="password"
@@ -117,7 +118,7 @@ export default function ProfilePage() {
                     placeholder="Введите новый пароль"
                   />
                 ) : (
-                  <span>{password ? '••••••••' : 'Не указано'}</span>
+                  <span>{password ? '••••••••' : '••••••••'}</span> // Пароль всегда скрыт
                 )}
               </div>
 
