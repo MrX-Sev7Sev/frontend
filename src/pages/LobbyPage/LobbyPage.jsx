@@ -5,6 +5,31 @@ import NavigationSidebar from '../../components/NavigationSidebar';
 import { GamesAPI } from '../../api/games';
 import './LobbyPage.css';
 
+const getGameImage = (type) => {
+  const images = {
+    'Uno': '/assets/games/uno.jpg',
+    'Карты': '/assets/games/cards.jpg',
+    'Шахматы': '/assets/games/chess.jpg',
+    'Шашки': '/assets/games/checkers.jpg',
+    'Нарды': '/assets/games/backgammon.jpg',
+    'Мафия': '/assets/games/mafia.jpg',
+    'Монополия': '/assets/games/monopoly.jpg',
+    'Дженга': '/assets/games/jenga.jpg',
+    'Dungeons & Dragons': '/assets/games/dnd.jpg',
+    'Каркассон': '/assets/games/carcassonn.jpg',
+    'Бункер': '/assets/games/bunker.jpg',
+    'Пандемия': '/assets/games/pandemic.jpg',
+    'Эрудит': '/assets/games/scrabble.jpg',
+    'Алиас': '/assets/games/alias.jpg',
+    'Имаджинариум': '/assets/games/imaginarium.jpg',
+    'Свинтус': '/assets/games/svintus.jpg',
+    'Крокодил': '/assets/games/crocodile.jpg',
+    'default': '/assets/games/custom.jpg'
+  };
+
+  return images[type] || images.default;
+};
+
 export default function LobbyPage() {
   const { gameId } = useParams();
   const { user } = useAuth();
@@ -123,7 +148,7 @@ export default function LobbyPage() {
           <div className="lobby-avatar-section">
             <div className="game-avatar">
               <img 
-                src={game.image || '/assets/games/custom.jpg'} 
+                src={getGameImage(game.type)} 
                 alt="Аватар игры" 
               />
             </div>
@@ -173,10 +198,6 @@ export default function LobbyPage() {
           </div>
 
           <div className="lobby-info">
-            <div className="info-item">
-              <label>Название комнаты:</label>
-              <span>{game.name}</span>
-            </div>
             <div className="info-item">
               <label>Игра:</label>
               <span>{game.type}</span>
