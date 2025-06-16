@@ -177,3 +177,24 @@
     width: 100%;
   }
 }
+
+.info-item input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #E2B07A;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #FFF9F5;
+  margin-top: 0.5rem;
+}
+
+.info-item input::placeholder {
+  color: #B3593D;
+  opacity: 0.7;
+}
+
+.info-item span {
+  font-size: 1rem;
+  color: #943D2C;
+  word-break: break-word;
+}

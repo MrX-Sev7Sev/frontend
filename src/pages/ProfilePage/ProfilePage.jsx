@@ -1,15 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import NavigationSidebar from '../../components/NavigationSidebar';
+import { UsersAPI } from '../../api/users';
 import './ProfilePage.css';
 
 export default function ProfilePage() {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
-  const [editedName, setEditedName] = useState(user?.name || '');
-  const [avatar, setAvatar] = useState(user?.avatar || '');
+  const [editedName, setEditedName] = useState('');
+  const [vkLink, setVkLink] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [avatar, setAvatar] = useState('');
+
+  useEffect(() => {
+    if (user) {
+      const profile = UsersAPI.getProfile(user.email);
+      setEditedName(profile.nickname || '');
+      setVkLink(profile.vkLink || '');
+      setEmail(profile.email || user.email || '');
+      setAvatar(profile.avatar || '/assets/img/avatar-default.png');
+    }
+  }, [user]);
 
   const handleSave = () => {
+    if (user) {
+      const profileData = {
+        nickname: editedName,
+        vkLink,
+        email,
+        password,
+        avatar,
+      };
+      UsersAPI.saveProfile(user.email, profileData);
+    }
     setIsEditing(false);
   };
 
@@ -27,7 +51,7 @@ export default function ProfilePage() {
             <div className="avatar-section">
               <div className="avatar-wrapper">
                 <img 
-                  src={avatar || '/assets/img/avatar-default.png'} 
+                  src={avatar} 
                   alt="Аватар" 
                   className="profile-avatar"
                 />
@@ -44,7 +68,7 @@ export default function ProfilePage() {
 
             <div className="profile-info">
               <div className="info-item">
-                <label>Имя:</label>
+                <label>Nickname:</label>
                 {isEditing ? (
                   <input
                     type="text"
@@ -57,8 +81,44 @@ export default function ProfilePage() {
               </div>
 
               <div className="info-item">
+                <label>VK Link:</label>
+                {isEditing ? (
+                  <input
+                    type="text"
+                    value={vkLink}
+                    onChange={(e) => setVkLink(e.target.value)}
+                    placeholder="https://vk.com/your_id"
+                  />
+                ) : (
+                  <span>{vkLink || 'Не указано'}</span>
+                )}
+              </div>
+
+              <div className="info-item">
                 <label>Email:</label>
-                <span>{user?.email}</span>
+                {isEditing ? (
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                ) : (
+                  <span>{email || 'Не указано'}</span>
+                )}
+              </div>
+
+              <div className="info-item">
+                <label>Password:</label>
+                {isEditing ? (
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Введите новый пароль"
+                  />
+                ) : (
+                  <span>{password ? '••••••••' : 'Не указано'}</span>
+                )}
               </div>
 
               <div className="profile-actions">
