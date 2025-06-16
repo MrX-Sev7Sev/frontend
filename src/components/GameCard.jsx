@@ -55,7 +55,7 @@ export default function GameCard({ game }) {
           </span>
         )}
         <div className="game-card-info">
-          {isAdmin && <span className="admin-badge">Админ</span>}
+          {isAdmin && <span className="gamecard-admin-badge">Админ</span>}
           <span>{game.players.length}/{game.maxPlayers} игроков</span>
         </div>
       </div>
