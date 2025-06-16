@@ -186,6 +186,22 @@
   margin-top: 1rem;
 }
 
+.lobby-avatar-section h3 {
+  color: #943D2C;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.players-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #943D2C;
+}
+
 .player-card {
   display: flex;
   align-items: center;

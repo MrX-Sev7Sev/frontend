@@ -162,7 +162,12 @@ export default function LobbyPage() {
               />
             </div>
             {/* Список игроков */}
-            <h3>Участники</h3>
+            <h3>
+              Участники
+              <span className="players-count">
+                {game?.players?.length || 0}/{game?.maxPlayers || '∞'} игроков
+              </span>
+            </h3>
             <div className="players-list">
               {game?.players
                 ?.filter(player => player !== null) // Фильтруем null-игроков
