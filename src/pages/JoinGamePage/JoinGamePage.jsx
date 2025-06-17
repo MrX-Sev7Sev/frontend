@@ -272,10 +272,11 @@ export default function JoinGamePage() {
                   >
                     <option value="">Все</option>
                     <option value="ГУК">Главный учебный корпус</option>
-                    <option value="РТФ">Радиотехнический корпус</option>
-                    <option value="УГИ">Уральский гуманитарный институт</option>
-                    <option value="ИЕНиМ">Институт естественных наук</option>
-                    <option value="custom">Другое</option>
+                    <option value="УГИ">Уральский Гуманитарный Институт</option>
+                    <option value="ИРИТ-РТФ">Институт Радиоэлектронники и Информационных Технологий - РТФ</option>
+                    <option value="ФТИ">Физико-Технологический Институт</option>
+                    <option value="ХТИ">Химико-Технологический Институт</option>
+                    <option value="custom">Другое место</option>
                   </select>
 
                   {filters.location === 'custom' && (

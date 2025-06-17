@@ -148,7 +148,7 @@ export const GamesAPI = {
         id: 1717592400000,
         name: 'Вечерние шахматы',
         type: 'Шахматы',
-        location: 'РТФ, аудитория 304',
+        location: 'ИРИТ-РТФ, аудитория 304',
         date: '2024-03-20T18:00:00.000Z',
         maxPlayers: 4,
         players: ['player1@example.com'],
