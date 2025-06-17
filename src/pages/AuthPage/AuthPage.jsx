@@ -6,7 +6,6 @@ import './AuthPage.css';
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState(''); // Новое поле для регистрации
   const [errors, setErrors] = useState({ email: '', password: '', general: '' });
   const [isLoginTab, setIsLoginTab] = useState(true);
   const { login, register } = useAuth();
@@ -58,7 +57,7 @@ export default function AuthPage() {
     e.preventDefault();
     
     if (validateForm()) {
-      const errorMessage = register(email, password, nickname);
+      const errorMessage = register(email, password);
       if (errorMessage) {
         setErrors({ ...errors, general: errorMessage });
       } else {
@@ -88,16 +87,6 @@ export default function AuthPage() {
         </div>
 
         <form onSubmit={isLoginTab ? handleLogin : handleRegister}>
-          {!isLoginTab && (
-            <div className="auth-input-container">
-              <input
-                type="text"
-                placeholder="Имя пользователя"
-                value={nickname}
-                onChange={(e) => setNickname(e.target.value)}
-              />
-            </div>
-          )}
 
           <div className="auth-inputs">
             {/* Поле Email */}
