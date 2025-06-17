@@ -181,12 +181,29 @@
 
 .info-item input {
   width: 100%;
+  max-width: 300px;
   padding: 0.8rem;
   border: 1px solid #E2B07A;
   border-radius: 6px;
   font-size: 1rem;
   background: #FFF9F5;
   margin-top: 0.5rem;
+}
+
+.vk-link-input {
+  display: flex;
+  align-items: center;
+}
+
+.vk-link-input .vk-prefix {
+  color: #B3593D;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+}
+
+.vk-link-input input {
+  flex: 1;
+  max-width: 200px;
 }
 
 .info-item input::placeholder {
@@ -198,4 +215,6 @@
   font-size: 1rem;
   color: #943D2C;
   word-break: break-word;
+  padding: 0.8rem;
+  display: block;
 }
