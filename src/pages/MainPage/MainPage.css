@@ -109,13 +109,13 @@
   overflow: hidden;
   transition: all 0.3s ease;
   aspect-ratio: 1/1;
-  box-shadow: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transform: translateY(0);
 }
 
 .articles-grid .article-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
 }
 
 .article-image {
