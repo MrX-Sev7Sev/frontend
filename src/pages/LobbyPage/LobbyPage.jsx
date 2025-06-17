@@ -185,9 +185,19 @@ export default function LobbyPage() {
                     <span className="player-name">
                       {(() => {
                         const playerProfile = UsersAPI.getProfile(player);
-                        return playerProfile.nickname && playerProfile.nickname.trim() !== '' 
+                        const displayName = playerProfile.nickname && playerProfile.nickname.trim() !== '' 
                           ? playerProfile.nickname 
                           : (player || 'Неизвестный игрок');
+                        const vkLink = playerProfile.vkLink && playerProfile.vkLink !== 'https://vk.com/' 
+                          ? playerProfile.vkLink 
+                          : null;
+                        return vkLink ? (
+                          <a href={vkLink} target="_blank" rel="noopener noreferrer">
+                            {displayName}
+                          </a>
+                        ) : (
+                          displayName
+                        );
                       })()}
                     </span>
                   </div>
