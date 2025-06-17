@@ -3,6 +3,7 @@ import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import NavigationSidebar from '../../components/NavigationSidebar';
 import { GamesAPI } from '../../api/games';
+import { UsersAPI } from '../../api/users';
 import './JoinGamePage.css';
 
 // Массив с популярными играми
@@ -330,7 +331,7 @@ export default function JoinGamePage() {
                     <td>
                       <div className="creator-info">
                         <img 
-                          src={game.adminAvatar || '/assets/img/avatar-default.png'} 
+                          src={UsersAPI.getProfile(game.admin).avatar || '/assets/img/avatar-default.png'} 
                           alt="Создатель" 
                           className="creator-avatar"
                         />
