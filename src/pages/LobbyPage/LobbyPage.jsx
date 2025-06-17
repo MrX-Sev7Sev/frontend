@@ -183,7 +183,12 @@ export default function LobbyPage() {
                       className="player-avatar"
                     />
                     <span className="player-name">
-                      {player || 'Неизвестный игрок'}
+                      {(() => {
+                        const playerProfile = UsersAPI.getProfile(player);
+                        return playerProfile.nickname && playerProfile.nickname.trim() !== '' 
+                          ? playerProfile.nickname 
+                          : (player || 'Неизвестный игрок');
+                      })()}
                     </span>
                   </div>
                 ))}
