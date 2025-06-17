@@ -178,7 +178,7 @@ export default function LobbyPage() {
                       <span className="admin-badge">Админ</span>
                     )}
                     <img 
-                      src={profile.avatar || '/assets/img/avatar-default.png'} 
+                      src={UsersAPI.getProfile(player).avatar || '/assets/img/avatar-default.png'} 
                       alt="Аватар" 
                       className="player-avatar"
                     />
