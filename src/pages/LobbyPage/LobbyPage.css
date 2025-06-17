@@ -239,7 +239,7 @@
 .lobby-info {
   flex: 1;
   max-width: 600px;
-  height: 410px;
+  height: 460px;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -514,21 +514,21 @@
 }
 
 .lobby-info span {
-  margin-top: -0.3rem;
+  margin-top: 0.1rem;
 }
 
 .lobby-info .info-item:nth-child(1) span {
-    margin-left: -6.7rem
+    margin-left: -6rem
 }
 
 .lobby-info .info-item:nth-child(2) span {
-  margin-left: -6.2rem
+  margin-left: -5.5rem
 }
 
 .lobby-info .info-item:nth-child(3) span {
-  margin-left: -0.7rem
+  margin-left: 5.5rem
 }
 
 .lobby-info .info-item:nth-child(4) span {
-  margin-left: -1.4rem
+  margin-left: 3.3rem
 }
