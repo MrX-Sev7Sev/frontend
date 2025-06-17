@@ -27,10 +27,11 @@ export default function ProfilePage() {
 
   const handleSave = () => {
     if (user) {
+      const currentProfile = UsersAPI.getProfile(user.email);
       const profileData = {
+        ...currentProfile, // Сохраняем существующие значения, включая email и password
         nickname: editedName,
         vkLink,
-        email,
         avatar: avatarFile ? URL.createObjectURL(avatarFile) : avatar, // Обновляем аватар, если файл загружен
       };
       UsersAPI.saveProfile(user.email, profileData);
