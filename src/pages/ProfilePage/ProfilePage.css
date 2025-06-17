@@ -65,6 +65,35 @@
   height: 100%;
   opacity: 0;
   cursor: pointer;
+  transition: opacity 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.avatar-upload::-webkit-file-upload-button {
+  display: none;
+}
+
+.avatar-upload::file-selector-button {
+  display: none;
+}
+
+.avatar-upload:hover {
+  opacity: 0.7;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.avatar-upload:hover::after {
+  content: "Загрузить фото";
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .profile-info {
