@@ -120,12 +120,43 @@
 }
 
 .info-item input {
+  position: relative;
+  top: -0.5rem;
   width: 100%;
   padding: 0.8rem;
   border: 1px solid #E2B07A;
   border-radius: 6px;
   font-size: 1rem;
   background: #FFF9F5;
+}
+
+.info-item:nth-child(1) input {
+  left: -0.7rem;
+}
+
+.info-item:nth-child(2) input {
+  left: -5.5rem;
+}
+
+.info-item span {
+  position: relative;
+  top: -0.2rem;
+}
+
+.info-item:nth-child(1) span {
+  left: -1.5rem;
+}
+
+.info-item:nth-child(2) span {
+  left: -1.7rem;
+}
+
+.info-item:nth-child(3) span {
+  left: -7rem;
+}
+
+.info-item:nth-child(4) span {
+  left: -5.5rem;
 }
 
 .profile-actions {

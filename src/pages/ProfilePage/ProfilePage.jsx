@@ -18,7 +18,7 @@ export default function ProfilePage() {
     if (user) {
       const profile = UsersAPI.getProfile(user.email);
       setEditedName(profile.nickname || '');
-      // Устанавливаем только пользовательскую часть ссылки, если она есть
+
       setVkLink(profile.vkLink ? profile.vkLink.replace('https://vk.com/', '') : '');
       setEmail(profile.email || user.email || '');
       setAvatar(profile.avatar || '/assets/img/avatar-default.png');
@@ -30,7 +30,7 @@ export default function ProfilePage() {
     if (user) {
       const currentProfile = UsersAPI.getProfile(user.email);
       const profileData = {
-        ...currentProfile, // Сохраняем существующие значения, включая email и password
+        ...currentProfile,
         nickname: editedName,
         vkLink: vkLink ? `https://vk.com/${vkLink}` : 'https://vk.com/',
         avatar: avatarFile ? URL.createObjectURL(avatarFile) : avatar, // Обновляем аватар, если файл загружен
@@ -44,7 +44,7 @@ export default function ProfilePage() {
     const file = e.target.files[0];
     if (file) {
       setAvatarFile(file);
-      setAvatar(URL.createObjectURL(file)); // Показываем превью новой аватарки
+      setAvatar(URL.createObjectURL(file));
     }
   };
 
@@ -102,7 +102,6 @@ export default function ProfilePage() {
                       value={vkLink}
                       onChange={(e) => setVkLink(e.target.value)}
                       maxLength={20}
-                      placeholder="ваш_идентификатор"
                     />
                   </div>
                 ) : (
@@ -115,7 +114,6 @@ export default function ProfilePage() {
                 <span>{email || 'Не указано'}</span>
               </div>
 
-              {/* Новое поле "Пароль" */}
               <div className="info-item">
                 <label>Пароль:</label>
                 <span>{password || '••••••••'}</span>
