@@ -155,6 +155,27 @@ export default function CreateGamePage() {
     setShowCustomGameInput(value === 'Добавить свою игру');
   };
 
+  
+  // Обработка изменения даты
+  const handleDateChange = (e) => {
+    const date = e.target.value;
+    setFormData({ ...formData, date });
+  };
+
+  // Обработка изменения времени
+  const handleTimeChange = (e) => {
+    const time = e.target.value;
+    setFormData({ ...formData, time });
+  };
+
+  // Получаем минимальное время для выбора
+  const getMinTime = () => {
+    if (formData.date === currentDate) {
+      return currentTime; // Если дата сегодня, минимальное время - текущее
+    }
+    return '00:00'; // Если дата позже, время может быть любое
+  };
+
   // Отправка формы
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -290,16 +311,16 @@ export default function CreateGamePage() {
             <input
               type="date"
               value={formData.date}
-              onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+              onChange={handleDateChange}
               required
               min={currentDate} // Минимальная дата - сегодня
             />
             <input
               type="time"
               value={formData.time}
-              onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+              onChange={handleTimeChange}
               required
-              min={currentTime} // Минимальное время - текущее
+              min={getMinTime()} // Минимальное время зависит от выбранной даты
             />
           </div>
         </div>
