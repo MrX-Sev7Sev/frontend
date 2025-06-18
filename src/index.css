@@ -3,9 +3,10 @@ body {
   font-family: "Arial", sans-serif;
 }
 
-/* body::selection {
-  background-color:#FDD1A1 
-} */
+body::selection {
+  background-color: #2C1404;
+  color: #FFE2C2;
+}
 
 .main-content {
   margin-left: 250px; /* Ширина сайдбара */
