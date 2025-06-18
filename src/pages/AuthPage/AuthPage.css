@@ -242,9 +242,10 @@ a {
   font-size: 12px;
   position: absolute;
   bottom: -18px;
-  left: 0;
+  left: 10px;
   white-space: nowrap;
   bottom: -22px;
+  top: 65px;
 }
 
 .input-error {
@@ -261,7 +262,14 @@ a {
 }
 
 .general-error {
+  position: relative;
   color: #ff4444;
   text-align: center;
   margin: 15px 0;
+  left: -10px;
+}
+
+.auth-tab:hover {
+  transform: none;
+  border: none;
 }
