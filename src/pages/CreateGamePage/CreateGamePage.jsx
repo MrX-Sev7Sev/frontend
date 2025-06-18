@@ -120,6 +120,11 @@ export default function CreateGamePage() {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  // Текущая дата и время
+  const now = new Date();
+  const currentDate = now.toISOString().split('T')[0]; // Например: "2024-03-20"
+  const currentTime = now.toTimeString().slice(0, 5); // Например: "15:30"
+
   // Состояния формы
   const [formData, setFormData] = useState({
     name: '',
@@ -127,8 +132,8 @@ export default function CreateGamePage() {
     customType: '',
     customGenre: '',
     location: 'ГУК',
-    date: '',
-    time: '',
+    date: currentDate, // Устанавливаем текущую дату по умолчанию
+    time: currentTime, // Устанавливаем текущее время по умолчанию
     maxPlayers: 4,
     room: '' // Добавляем поле для аудитории/места
   });
@@ -154,24 +159,25 @@ export default function CreateGamePage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-  // Определяем тип игры и жанр
-  const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
-  const gameGenre = formData.type === 'Добавить свою игру'
-    ? formData.customGenre
-    : POPULAR_GAMES.find((game) => game.title === formData.type)?.genre || 'Другая';
+    // Определяем тип игры и жанр
+    const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
+    const gameGenre = formData.type === 'Добавить свою игру'
+      ? formData.customGenre
+      : POPULAR_GAMES.find((game) => game.title === formData.type)?.genre || 'Другая';
 
-    // изображение
+    // Изображение
     const gameImage = POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg';
 
-  // Определяем место проведения
-  const gameLocation = formData.location === 'other' ? customLocation : `${formData.location}, ${formData.room}`;
+    // Место проведения
+    const gameLocation = formData.location === 'other' ? customLocation : `${formData.location}, ${formData.room}`;
 
+    // Создаем новую игру
     const newGame = {
       id: Date.now(),
       ...formData,
       type: gameType,
       image: gameImage,
-      genre: gameGenre, // Передаём жанр игры
+      genre: gameGenre,
       location: gameLocation,
       admin: user.email,
       players: [user.email],
@@ -186,28 +192,28 @@ export default function CreateGamePage() {
   };
 
   // хуйня для вычисления заливки ползунка колва игроков
-    useEffect(() => {
-        const rangeInput = document.querySelector('.players-input input[type="range"]');
+  useEffect(() => {
+    const rangeInput = document.querySelector('.players-input input[type="range"]');
 
-        if (rangeInput) {
-          const handleInput = () => {
-            const value = rangeInput.value;
-            const max = rangeInput.max;
-            const min = rangeInput.min;
-            const progress = ((value - min) / (max - min)) * 100; // Точное вычисление прогресса
-            rangeInput.style.setProperty('--range-progress', `${progress}%`);
-          };
-          handleInput();
-          rangeInput.addEventListener('input', handleInput);
+    if (rangeInput) {
+      const handleInput = () => {
+        const value = rangeInput.value;
+        const max = rangeInput.max;
+        const min = rangeInput.min;
+        const progress = ((value - min) / (max - min)) * 100; // Точное вычисление прогресса
+        rangeInput.style.setProperty('--range-progress', `${progress}%`);
+      };
+      handleInput();
+      rangeInput.addEventListener('input', handleInput);
 
-          // Отписка при размонтировании компонента
-          return () => {
-            rangeInput.removeEventListener('input', handleInput);
-          };
-        }
-      }, []); // Пустой массив зависимостей, чтобы эффект выполнился только при монтировании
+      // Отписка при размонтировании компонента
+      return () => {
+        rangeInput.removeEventListener('input', handleInput);
+      };
+    }
+  }, []); // Пустой массив зависимостей, чтобы эффект выполнился только при монтировании
 
-    return (
+  return (
     <div className="create-game-page">
       <h1>Создание игры</h1>
 
@@ -286,12 +292,14 @@ export default function CreateGamePage() {
               value={formData.date}
               onChange={(e) => setFormData({ ...formData, date: e.target.value })}
               required
+              min={currentDate} // Минимальная дата - сегодня
             />
             <input
               type="time"
               value={formData.time}
               onChange={(e) => setFormData({ ...formData, time: e.target.value })}
               required
+              min={currentTime} // Минимальное время - текущее
             />
           </div>
         </div>
@@ -336,6 +344,7 @@ export default function CreateGamePage() {
             </div>
           )}
         </div>
+
         {/* Количество участников */}
         <div className="form-group">
           <label>Количество участников</label>
