@@ -153,6 +153,8 @@ a {
 
 .auth-tab:hover {
   color: #9B4736;
+  transform: none;
+  box-shadow: none;
 }
 
 .auth-remember {
@@ -267,9 +269,4 @@ a {
   text-align: center;
   margin: 15px 0;
   left: -10px;
-}
-
-.auth-tab:hover {
-  transform: none;
-  border: none;
 }
