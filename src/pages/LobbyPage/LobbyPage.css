@@ -532,3 +532,17 @@
 .lobby-info .info-item:nth-child(4) span {
   margin-left: 3.3rem
 }
+
+/* Стили для ссылки на VK */
+.player-name a {
+  color: inherit; /* Цвет наследуется от .player-name */
+  text-decoration: none; /* Убираем стандартное подчеркивание */
+  transition: text-decoration 0.3s ease; /* Плавное появление подчеркивания */
+}
+
+/* Ховер для ссылки на VK */
+.player-name a:hover {
+  text-decoration: underline; /* Подчеркивание при наведении */
+  text-decoration-color: #B3593D; /* Цвет подчеркивания - темный бежевый */
+  color: #683222;
+}
