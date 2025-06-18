@@ -336,7 +336,14 @@ export default function JoinGamePage() {
                           alt="Создатель" 
                           className="creator-avatar"
                         />
-                        <span>{game.admin}</span>
+                        <span>
+                          {(() => {
+                            const profile = UsersAPI.getProfile(game.admin);
+                            return profile.nickname && profile.nickname.trim() !== '' 
+                              ? profile.nickname 
+                              : game.admin;
+                          })()}
+                        </span>
                       </div>
                     </td>
                   </tr>
