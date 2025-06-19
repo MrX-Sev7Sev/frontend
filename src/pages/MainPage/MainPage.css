@@ -279,6 +279,10 @@
   margin-bottom: 1.5rem;
 }
 
+.modal-content {
+  background-color:antiquewhite;
+}
+
 .modal-body h3 {
   color: #943D2C;
   font-size: 1.5rem;
