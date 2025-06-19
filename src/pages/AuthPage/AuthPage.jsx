@@ -1,31 +1,35 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { UsersAPI } from '../../api/users';
+import AgreementModal from '../../components/AgreementModal'; // Импортируем модальное окно
 import './AuthPage.css';
 
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [errors, setErrors] = useState({ email: '', password: '', general: '' });
+  const [errors, setErrors] = useState({ email: '', password: '', confirmPassword: '', general: '' });
   const [isLoginTab, setIsLoginTab] = useState(true);
+  const [isAgreementModalOpen, setIsAgreementModalOpen] = useState(false);
   const { login, register } = useAuth();
 
-  // Валидация формы
   const validateForm = () => {
     const newErrors = { email: '', password: '', confirmPassword: '' };
     let isValid = true;
 
-    // Проверка email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       newErrors.email = 'Некорректный формат email';
       isValid = false;
     }
 
-    // Проверка пароля
     if (password.length <= 4) {
       newErrors.password = 'Пароль должен быть длиннее 4 символов';
+      isValid = false;
+    }
+
+    if (!isLoginTab && password !== confirmPassword) {
+      newErrors.confirmPassword = 'Пароли не совпадают';
       isValid = false;
     }
 
@@ -33,19 +37,14 @@ export default function AuthPage() {
     return isValid;
   };
 
-  // Обработка входа
   const handleLogin = async (e) => {
     e.preventDefault();
-    
     if (validateForm()) {
       try {
-        // Проверяем, существует ли пользователь
-        const profile = UsersAPI.getProfile(email); // Используем UsersAPI
+        const profile = UsersAPI.getProfile(email);
         if (!profile || profile.password !== password) {
           throw new Error('Неверный email или пароль');
         }
-
-        // Авторизация
         login('fake-jwt-token', email);
       } catch (error) {
         setErrors({ ...errors, general: error.message });
@@ -53,12 +52,9 @@ export default function AuthPage() {
     }
   };
 
-  // Обработка регистрации
   const handleRegister = async (e) => {
     e.preventDefault();
-    
     if (validateForm()) {
-      // Проверяем, совпадают ли пароли
       if (password !== confirmPassword) {
         setErrors({ ...errors, confirmPassword: 'Пароли не совпадают' });
         return;
@@ -68,9 +64,17 @@ export default function AuthPage() {
       if (errorMessage) {
         setErrors({ ...errors, general: errorMessage });
       } else {
-        login('fake-jwt-token', email); // Авторизация после регистрации
+        login('fake-jwt-token', email);
       }
     }
+  };
+
+  const openAgreementModal = () => {
+    setIsAgreementModalOpen(true);
+  };
+
+  const closeAgreementModal = () => {
+    setIsAgreementModalOpen(false);
   };
 
   return (
@@ -182,9 +186,23 @@ export default function AuthPage() {
               />
               Продолжить с <b>VK ID</b>
             </button>
+
+            {/* Текст с соглашением */}
+            {!isLoginTab && (
+              <div className="agreement-text">
+                Регистрируясь в нашем сервисе,<br></br>вы соглашаетесь на условия{' '}
+                <a href="#agreement" onClick={openAgreementModal}>пользовательского соглашения</a>.
+              </div>
+            )}
           </div>
         </form>
       </div>
+
+      {/* Модальное окно с пользовательским соглашением */}
+      <AgreementModal
+        isOpen={isAgreementModalOpen}
+        onClose={closeAgreementModal}
+      />
     </div>
   );
 }
