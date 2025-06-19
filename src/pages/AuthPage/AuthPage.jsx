@@ -130,20 +130,6 @@ export default function AuthPage() {
             </div>
           </div>
 
-          {/* Чекбокс "Запомнить меня" только для входа */}
-          {isLoginTab && (
-            <div className="auth-rememberbox">
-              <input 
-                className="auth-checkbox" 
-                type="checkbox" 
-                id="remember" 
-              />
-              <label htmlFor="remember" className="auth-remember">
-                Запомнить меня
-              </label>
-            </div>
-          )}
-
           <div className="auth-buttons">
             {/* Кнопка отправки формы */}
             <div className='decor-line'>
@@ -152,12 +138,12 @@ export default function AuthPage() {
               </button>
             </div>
 
-            {/* Ссылка "Забыли пароль?" только для входа */}
+            {/* Ссылка "Забыли пароль?" только для входа
             {isLoginTab && (
               <a href="#forgot" className="auth-restore-password">
                 Забыли пароль?
               </a>
-            )}
+            )} */}
 
             {/* Общая ошибка */}
             {errors.general && (
