@@ -99,7 +99,7 @@ export default function AuthPage() {
 
         <form onSubmit={isLoginTab ? handleLogin : handleRegister}>
           <div className="auth-inputs">
-            {/* Поле Email */}
+                        {/* Поле Email */}
             <div className={`auth-input-container ${errors.email ? 'has-error' : ''}`}>
               <input
                 type="email"
@@ -110,11 +110,13 @@ export default function AuthPage() {
                   setErrors(prev => ({ ...prev, email: '' }));
                 }}
                 className={errors.email ? 'input-error' : ''}
+                style={!isLoginTab ? { marginLeft: '4px' } : {}} // Сдвиг вправо для регистрации
               />
               <img 
                 className="auth-mail-icon" 
                 src="/assets/img/email-icon.svg" 
                 alt="Email" 
+                style={!isLoginTab ? { left: '-25px' } : {}} // Сдвиг иконки для регистрации
               />
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
@@ -130,11 +132,13 @@ export default function AuthPage() {
                   setErrors(prev => ({ ...prev, password: '' }));
                 }}
                 className={errors.password ? 'input-error' : ''}
+                style={!isLoginTab ? { marginLeft: '4px' } : {}} // Сдвиг вправо для регистрации
               />
               <img 
                 className="auth-password-icon" 
                 src="/assets/img/password-icon.svg" 
                 alt="Password" 
+                style={!isLoginTab ? { left: '-30px' } : {}} // Сдвиг иконки для регистрации
               />
               {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
@@ -151,11 +155,13 @@ export default function AuthPage() {
                     setErrors(prev => ({ ...prev, confirmPassword: '' }));
                   }}
                   className={errors.confirmPassword ? 'input-error' : ''}
+                  style={{ marginLeft: '4px' }} // Сдвиг вправо для подтверждения пароля
                 />
                 <img 
                   className="auth-password-icon" 
                   src="/assets/img/password-icon.svg" 
                   alt="Confirm Password" 
+                  style={{ left: '-30px' }} // Сдвиг иконки для подтверждения пароля
                 />
                 {errors.confirmPassword && (
                   <span className="error-message">{errors.confirmPassword}</span>
