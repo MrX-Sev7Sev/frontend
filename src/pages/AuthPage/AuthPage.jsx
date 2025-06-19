@@ -99,7 +99,7 @@ export default function AuthPage() {
 
         <form onSubmit={isLoginTab ? handleLogin : handleRegister}>
           <div className="auth-inputs">
-                        {/* Поле Email */}
+            {/* Поле Email */}
             <div className={`auth-input-container ${errors.email ? 'has-error' : ''}`}>
               <input
                 type="email"
