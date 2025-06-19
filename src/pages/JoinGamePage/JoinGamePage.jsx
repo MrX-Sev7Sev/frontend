@@ -200,12 +200,10 @@ export default function JoinGamePage() {
         game.location.toLowerCase().includes(filters.location.toLowerCase()) ||
         (filters.customLocation && game.location.toLowerCase().includes(filters.customLocation.toLowerCase()));
 
-      // Дата
-      const matchesDate = !filters.date || new Date(game.date).toLocaleDateString('ru-RU', {
-        day: 'numeric',
-        month: 'numeric',
-        year: 'numeric'
-      }).split('.').reverse().join('-') === filters.date;
+    // Дата
+    const gameDate = new Date(game.date).toISOString().split('T')[0]; // Преобразуем game.date в YYYY-MM-DD
+    const filterDate = filters.date ? filters.date.split('T')[0] : null; // Преобразуем filters.date в YYYY-MM-DD (если он есть)
+    const matchesDate = !filterDate || gameDate === filterDate;
 
       return matchesSearch && matchesType && matchesLocation && matchesDate;
     });
