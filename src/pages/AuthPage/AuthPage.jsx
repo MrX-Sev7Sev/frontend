@@ -6,13 +6,14 @@ import './AuthPage.css';
 export default function AuthPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({ email: '', password: '', general: '' });
   const [isLoginTab, setIsLoginTab] = useState(true);
   const { login, register } = useAuth();
 
   // Валидация формы
   const validateForm = () => {
-    const newErrors = { email: '', password: '' };
+    const newErrors = { email: '', password: '', confirmPassword: '' };
     let isValid = true;
 
     // Проверка email
@@ -57,6 +58,12 @@ export default function AuthPage() {
     e.preventDefault();
     
     if (validateForm()) {
+      // Проверяем, совпадают ли пароли
+      if (password !== confirmPassword) {
+        setErrors({ ...errors, confirmPassword: 'Пароли не совпадают' });
+        return;
+      }
+
       const errorMessage = register(email, password);
       if (errorMessage) {
         setErrors({ ...errors, general: errorMessage });
@@ -87,7 +94,6 @@ export default function AuthPage() {
         </div>
 
         <form onSubmit={isLoginTab ? handleLogin : handleRegister}>
-
           <div className="auth-inputs">
             {/* Поле Email */}
             <div className={`auth-input-container ${errors.email ? 'has-error' : ''}`}>
@@ -128,6 +134,30 @@ export default function AuthPage() {
               />
               {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
+
+            {/* Поле Подтверждения пароля (только для регистрации) */}
+            {!isLoginTab && (
+              <div className={`auth-input-container ${errors.confirmPassword ? 'has-error' : ''}`}>
+                <input
+                  type="password"
+                  placeholder="Подтвердите пароль"
+                  value={confirmPassword}
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                    setErrors(prev => ({ ...prev, confirmPassword: '' }));
+                  }}
+                  className={errors.confirmPassword ? 'input-error' : ''}
+                />
+                <img 
+                  className="auth-password-icon" 
+                  src="/assets/img/password-icon.svg" 
+                  alt="Confirm Password" 
+                />
+                {errors.confirmPassword && (
+                  <span className="error-message">{errors.confirmPassword}</span>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="auth-buttons">
@@ -137,13 +167,6 @@ export default function AuthPage() {
                 {isLoginTab ? 'Войти' : 'Зарегистрироваться'}
               </button>
             </div>
-
-            {/* Ссылка "Забыли пароль?" только для входа
-            {isLoginTab && (
-              <a href="#forgot" className="auth-restore-password">
-                Забыли пароль?
-              </a>
-            )} */}
 
             {/* Общая ошибка */}
             {errors.general && (
