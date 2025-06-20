@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import './CreateGamePage.css';
 
-// Массив с популярными играми
 const POPULAR_GAMES = [
   {
     id: 2,
@@ -122,20 +121,20 @@ export default function CreateGamePage() {
 
   // Текущая дата и время
   const now = new Date();
-  const currentDate = now.toISOString().split('T')[0]; // Например: "2024-03-20"
-  const currentTime = now.toTimeString().slice(0, 5); // Например: "15:30"
+  const currentDate = now.toISOString().split('T')[0];
+  const currentTime = now.toTimeString().slice(0, 5);
 
   // Состояния формы
   const [formData, setFormData] = useState({
     name: '',
-    type: 'Добавить свою игру', // По умолчанию выбрана "Добавить свою игру"
+    type: 'Добавить свою игру',
     customType: '',
     customGenre: '',
     location: 'ГУК',
-    date: currentDate, // Устанавливаем текущую дату по умолчанию
-    time: currentTime, // Устанавливаем текущее время по умолчанию
+    date: currentDate,
+    time: currentTime,
     maxPlayers: 4,
-    room: '' // Добавляем поле для аудитории/места
+    room: ''
   });
 
   // Поле для ввода "Другое место"
@@ -171,9 +170,9 @@ export default function CreateGamePage() {
   // Получаем минимальное время для выбора
   const getMinTime = () => {
     if (formData.date === currentDate) {
-      return currentTime; // Если дата сегодня, минимальное время - текущее
+      return currentTime;
     }
-    return '00:00'; // Если дата позже, время может быть любое
+    return '00:00';
   };
 
   // Отправка формы
@@ -212,7 +211,7 @@ export default function CreateGamePage() {
     navigate('/main');
   };
 
-  // хуйня для вычисления заливки ползунка колва игроков
+  // Функция вычисления заливки ползунка слева
   useEffect(() => {
     const rangeInput = document.querySelector('.players-input input[type="range"]');
 
@@ -221,18 +220,18 @@ export default function CreateGamePage() {
         const value = rangeInput.value;
         const max = rangeInput.max;
         const min = rangeInput.min;
-        const progress = ((value - min) / (max - min)) * 100; // Точное вычисление прогресса
+        const progress = ((value - min) / (max - min)) * 100;
         rangeInput.style.setProperty('--range-progress', `${progress}%`);
       };
       handleInput();
       rangeInput.addEventListener('input', handleInput);
 
-      // Отписка при размонтировании компонента
+
       return () => {
         rangeInput.removeEventListener('input', handleInput);
       };
     }
-  }, []); // Пустой массив зависимостей, чтобы эффект выполнился только при монтировании
+  }, []);
 
   return (
     <div className="create-game-page">
@@ -313,14 +312,14 @@ export default function CreateGamePage() {
               value={formData.date}
               onChange={handleDateChange}
               required
-              min={currentDate} // Минимальная дата - сегодня
+              min={currentDate}
             />
             <input
               type="time"
               value={formData.time}
               onChange={handleTimeChange}
               required
-              min={getMinTime()} // Минимальное время зависит от выбранной даты
+              min={getMinTime()}
             />
           </div>
         </div>

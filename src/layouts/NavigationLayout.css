@@ -8,7 +8,7 @@
   padding: 2rem;
   background: #FDD1A1;
   overflow-y: auto;
-  min-width: 0; /* Фикс для обрезки контента */
+  min-width: 0;
 }
 
 @media (max-width: 768px) {

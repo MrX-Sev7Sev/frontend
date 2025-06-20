@@ -15,12 +15,12 @@
 @media (max-width: 768px) {
   .content-wrapper {
     padding: 1rem;
-    margin-top: 60px; /* Высота мобильного сайдбара */
+    margin-top: 60px;
   }
 }
 
 @media (min-width: 769px) {
   .content-wrapper {
-    margin-left: 250px; /* Ширина десктопного сайдбара */
+    margin-left: 250px;
   }
 }

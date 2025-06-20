@@ -1,3 +1,4 @@
+// ВНИМАНИЕ! Моковый API
 export const UsersAPI = {
   // Сохранение профиля
   saveProfile: (userId, profileData) => {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { UsersAPI } from '../../api/users';
-import AgreementModal from '../../components/AgreementModal'; // Импортируем модальное окно
+import AgreementModal from '../../components/AgreementModal';
 import './AuthPage.css';
 
 export default function AuthPage() {
@@ -110,13 +110,13 @@ export default function AuthPage() {
                   setErrors(prev => ({ ...prev, email: '' }));
                 }}
                 className={errors.email ? 'input-error' : ''}
-                style={!isLoginTab ? { marginLeft: '4px' } : {}} // Сдвиг вправо для регистрации
+                style={!isLoginTab ? { marginLeft: '4px' } : {}} 
               />
               <img 
                 className="auth-mail-icon" 
                 src="/assets/img/email-icon.svg" 
                 alt="Email" 
-                style={!isLoginTab ? { left: '-25px' } : {}} // Сдвиг иконки для регистрации
+                style={!isLoginTab ? { left: '-25px' } : {}} 
               />
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
@@ -132,13 +132,13 @@ export default function AuthPage() {
                   setErrors(prev => ({ ...prev, password: '' }));
                 }}
                 className={errors.password ? 'input-error' : ''}
-                style={!isLoginTab ? { marginLeft: '4px' } : {}} // Сдвиг вправо для регистрации
+                style={!isLoginTab ? { marginLeft: '4px' } : {}} 
               />
               <img 
                 className="auth-password-icon" 
                 src="/assets/img/password-icon.svg" 
                 alt="Password" 
-                style={!isLoginTab ? { left: '-30px' } : {}} // Сдвиг иконки для регистрации
+                style={!isLoginTab ? { left: '-30px' } : {}} 
               />
               {errors.password && <span className="error-message">{errors.password}</span>}
             </div>
@@ -155,13 +155,13 @@ export default function AuthPage() {
                     setErrors(prev => ({ ...prev, confirmPassword: '' }));
                   }}
                   className={errors.confirmPassword ? 'input-error' : ''}
-                  style={{ marginLeft: '4px' }} // Сдвиг вправо для подтверждения пароля
+                  style={{ marginLeft: '4px' }} 
                 />
                 <img 
                   className="auth-password-icon" 
                   src="/assets/img/password-icon.svg" 
                   alt="Confirm Password" 
-                  style={{ left: '-30px' }} // Сдвиг иконки для подтверждения пароля
+                  style={{ left: '-30px' }} 
                 />
                 {errors.confirmPassword && (
                   <span className="error-message">{errors.confirmPassword}</span>

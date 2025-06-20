@@ -120,7 +120,6 @@
   margin-bottom: 0.5rem;
 }
 
-/* Стили для текста в полях и вводимых значений */
 .info-item input {
   position: relative;
   top: -0.5rem;
@@ -128,18 +127,17 @@
   padding: 0.8rem;
   border: 1px solid #E2B07A;
   border-radius: 6px;
-  font-size: 1rem; /* Размер шрифта */
-  font-weight: 500; /* Жирность шрифта */
+  font-size: 1rem; 
+  font-weight: 500; 
   background: #FFF9F5;
-  color: #943D2C; /* Цвет текста */
-  transition: all 0.3s ease; /* Плавный переход для hover */
+  color: #943D2C;
+  transition: all 0.3s ease;
 }
 
-/* Фокус для input-полей */
 .info-item input:focus {
   outline: none;
-  border-color: #CC7951; /* Цвет рамки при фокусе */
-  box-shadow: 0 0 8px rgba(204, 121, 81, 0.5); /* Тень при фокусе */
+  border-color: #CC7951; 
+  box-shadow: 0 0 8px rgba(204, 121, 81, 0.5);
 }
 
 .info-item input::placeholder {
@@ -147,11 +145,10 @@
   opacity: 0.7;
 }
 
-/* Стили для текста в span (отображаемые значения) */
 .info-item span {
-  font-size: 1rem; /* Размер шрифта */
-  font-weight: 500; /* Жирность шрифта */
-  color: #943D2C; /* Цвет текста */
+  font-size: 1rem;
+  font-weight: 500; 
+  color: #943D2C; 
   word-break: break-word;
   padding: 0.8rem;
   display: block;
@@ -305,4 +302,3 @@
   padding: 0.8rem;
   display: block;
 }
-

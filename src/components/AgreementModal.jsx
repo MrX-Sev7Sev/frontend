@@ -63,7 +63,7 @@ const AgreementModal = ({ isOpen, onClose }) => {
         </div>
       </div>
     </div>,
-    document.body // Рендерим модальное окно в body
+    document.body
   );
 };
 

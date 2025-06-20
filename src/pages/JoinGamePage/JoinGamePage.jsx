@@ -6,7 +6,6 @@ import { GamesAPI } from '../../api/games';
 import { UsersAPI } from '../../api/users';
 import './JoinGamePage.css';
 
-// Массив с популярными играми
 const POPULAR_GAMES = [
   {
     id: 2,
@@ -182,7 +181,7 @@ export default function JoinGamePage() {
       } : game
     );
     GamesAPI.save(games);
-    navigate('/main'); // Редирект на главную страницу
+    navigate('/main');
   };
 
   // Обновляем функцию фильтрации
@@ -190,19 +189,17 @@ export default function JoinGamePage() {
     return games.filter(game => {
       const matchesSearch = game.name.toLowerCase().includes(searchQuery.toLowerCase());
 
-      // Тип игры: либо из списка, либо ручной ввод
       const matchesType = !filters.type || 
         game.type.toLowerCase() === filters.type.toLowerCase() ||
         (filters.customType && game.type.toLowerCase().includes(filters.customType.toLowerCase()));
 
-      // Место проведения: либо из списка, либо ручной ввод
       const matchesLocation = !filters.location || 
         game.location.toLowerCase().includes(filters.location.toLowerCase()) ||
         (filters.customLocation && game.location.toLowerCase().includes(filters.customLocation.toLowerCase()));
 
     // Дата
-    const gameDate = new Date(game.date).toISOString().split('T')[0]; // Преобразуем game.date в YYYY-MM-DD
-    const filterDate = filters.date ? filters.date.split('T')[0] : null; // Преобразуем filters.date в YYYY-MM-DD (если он есть)
+    const gameDate = new Date(game.date).toISOString().split('T')[0];
+    const filterDate = filters.date ? filters.date.split('T')[0] : null;
     const matchesDate = !filterDate || gameDate === filterDate;
 
       return matchesSearch && matchesType && matchesLocation && matchesDate;

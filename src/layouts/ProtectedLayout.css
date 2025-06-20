@@ -6,12 +6,12 @@
 .protected-content {
   flex: 1;
   padding: 2rem;
-  min-width: 0; /* Фикс для переполнения */
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
   .protected-content {
     padding: 1rem;
-    margin-top: 60px; /* Высота мобильного сайдбара */
+    margin-top: 60px;
   }
 }

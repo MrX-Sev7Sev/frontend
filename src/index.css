@@ -9,7 +9,7 @@ body::selection {
 }
 
 .main-content {
-  margin-left: 250px; /* Ширина сайдбара */
+  margin-left: 250px;
   padding: 30px;
   min-height: 100vh;
   background-color: #FDD1A1;

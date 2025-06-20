@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     UsersAPI.saveProfile(email, profileData);
-    return null; // Успешная регистрация
+    return null;
   };
 
   const logout = () => {

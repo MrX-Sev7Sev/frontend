@@ -33,7 +33,7 @@ export default function ProfilePage() {
         ...currentProfile,
         nickname: editedName,
         vkLink: vkLink ? `https://vk.com/${vkLink}` : 'https://vk.com/',
-        avatar: avatarFile ? URL.createObjectURL(avatarFile) : avatar, // Обновляем аватар, если файл загружен
+        avatar: avatarFile ? URL.createObjectURL(avatarFile) : avatar,
       };
       UsersAPI.saveProfile(user.email, profileData);
     }

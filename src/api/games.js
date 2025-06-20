@@ -1,3 +1,4 @@
+// ВНИМАНИЕ! Моковый API
 const POPULAR_GAMES = [
   {
     id: 2,
@@ -119,13 +120,12 @@ export const GamesAPI = {
   getAll: () => {
     const games = JSON.parse(localStorage.getItem('games')) || [];
     return games.map(game => {
-      // Если жанр не указан, находим его в POPULAR_GAMES
       if (!game.genre) {
         const popularGame = POPULAR_GAMES.find(pg => pg.title === game.type);
         if (popularGame) {
           game.genre = popularGame.genre;
         } else {
-          game.genre = 'Другая'; // Дефолтное значение, если игра не найдена
+          game.genre = 'Другая'; 
         }
       }
       return game;

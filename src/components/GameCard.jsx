@@ -29,7 +29,6 @@ export default function GameCard({ game }) {
       'default': '/assets/games/custom.jpg'
     };
 
-      // Если тип игры не в списке, возвращаем custom.jpg
       return images[type] || images.default;
     };
 
