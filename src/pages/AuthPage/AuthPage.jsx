@@ -41,11 +41,7 @@ export default function AuthPage() {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const profile = UsersAPI.getProfile(email);
-        if (!profile || profile.password !== password) {
-          throw new Error('Неверный email или пароль');
-        }
-        login('fake-jwt-token', email);
+        await login(email, password);
       } catch (error) {
         setErrors({ ...errors, general: error.message });
       }
@@ -60,11 +56,10 @@ export default function AuthPage() {
         return;
       }
 
-      const errorMessage = register(email, password);
-      if (errorMessage) {
-        setErrors({ ...errors, general: errorMessage });
-      } else {
-        login('fake-jwt-token', email);
+      try {
+        await register(email, password, email);
+      } catch (error) {
+        setErrors({ ...errors, general: error });
       }
     }
   };

@@ -1,25 +1,52 @@
-// ВНИМАНИЕ! Моковый API
+import api from './api';
+
 export const UsersAPI = {
-  // Сохранение профиля
-  saveProfile: (userId, profileData) => {
-    const profiles = JSON.parse(localStorage.getItem('profiles')) || {};
-    profiles[userId] = profileData;
-    localStorage.setItem('profiles', JSON.stringify(profiles));
+  // Регистрация нового пользователя
+  register: async (username, email, password) => {
+    try {
+      const response = await api.post('/auth/signup', {
+        username,
+        email,
+        password,
+      });
+      localStorage.setItem('token', response.data.access_token);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
   },
 
-  getProfile: (userId) => {
-    const profiles = JSON.parse(localStorage.getItem('profiles')) || {};
-    return profiles[userId] || {};
+  // Авторизация пользователя
+  login: async (email, password) => {
+    try {
+      const response = await api.post('/auth/login', {
+        email,
+        password,
+      });
+    localStorage.setItem('token', response.data.access_token);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
   },
 
-  // Проверка существования пользователя
-  userExists: (email) => {
-    const profiles = JSON.parse(localStorage.getItem('profiles')) || {};
-    return !!profiles[email];
+  // Получение профиля пользователя
+  getProfile: async () => {
+    try {
+      const response = await api.get('/users/me');
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
   },
 
-  // Получение всех профилей
-  getAllProfiles: () => {
-    return JSON.parse(localStorage.getItem('profiles')) || {};
+  // Обновление профиля пользователя
+  updateProfile: async (profileData) => {
+    try {
+      const response = await api.put('/users/me', profileData);
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
   },
 };

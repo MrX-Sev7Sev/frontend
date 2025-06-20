@@ -176,39 +176,14 @@ export default function CreateGamePage() {
   };
 
   // Отправка формы
-  const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Определяем тип игры и жанр
-    const gameType = formData.type === 'Добавить свою игру' ? formData.customType : formData.type;
-    const gameGenre = formData.type === 'Добавить свою игру'
-      ? formData.customGenre
-      : POPULAR_GAMES.find((game) => game.title === formData.type)?.genre || 'Другая';
-
-    // Изображение
-    const gameImage = POPULAR_GAMES.find((game) => game.title === formData.type)?.image || '/assets/games/custom.jpg';
-
-    // Место проведения
-    const gameLocation = formData.location === 'other' ? customLocation : `${formData.location}, ${formData.room}`;
-
-    // Создаем новую игру
-    const newGame = {
-      id: Date.now(),
-      ...formData,
-      type: gameType,
-      image: gameImage,
-      genre: gameGenre,
-      location: gameLocation,
-      admin: user.email,
-      players: [user.email],
-      date: new Date(`${formData.date}T${formData.time}`).toISOString()
-    };
-
-    // Сохраняем игру
-    const existingGames = JSON.parse(localStorage.getItem('games')) || [];
-    const updatedGames = [...existingGames, newGame];
-    localStorage.setItem('games', JSON.stringify(updatedGames));
-    navigate('/main');
+    try {
+      await GamesAPI.create(formData); // Используем метод create из GamesAPI
+      navigate('/main'); // Переходим на главную страницу
+    } catch (error) {
+      console.error('Ошибка при создании игры:', error);
+    }
   };
 
   // Функция вычисления заливки ползунка слева

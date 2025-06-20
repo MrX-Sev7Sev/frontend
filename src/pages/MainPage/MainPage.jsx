@@ -409,19 +409,16 @@ export default function MainPage() {
   };
 
   useEffect(() => {
-    const updateGames = () => {
-      const savedGames = JSON.parse(localStorage.getItem('games')) || [];
-      setGames(savedGames.filter(game =>
-        game.players.includes(user?.email) ||
-        game.admin === user?.email
-      ));
+    const fetchGames = async () => {
+      try{
+        const response = await GamesAPI.getAll(); // Используем метод getAll из GamesAPI
+        setGames(response.games);
+      } catch (error) {
+        console.error('Ошибка при загрузке игр:', error);
+      }
     };
-
-    window.addEventListener('storage', updateGames);
-    updateGames();
-
-    return () => window.removeEventListener('storage', updateGames);
-  }, [user?.email]);
+    fetchGames();
+  }, []);
 
   const handleDeleteGame = (gameId) => {
     const updatedGames = games.filter(game => game.id !== gameId);

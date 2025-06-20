@@ -1,43 +1,54 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { UsersAPI } from '../api/users';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const login = (token, email) => {
-    const profile = UsersAPI.getProfile(email);
-    if (profile) {
-      setUser({ ...profile, token });
-    } else {
-      console.error('Профиль не найден');
-    }
-  };
-
-  const register = (email, password, nickname) => {
-    if (UsersAPI.userExists(email)) {
-      return 'Пользователь с таким email уже существует';
-    }
-
-    const profileData = {
-      nickname,
-      email,
-      password,
-      vkLink: 'https://vk.com/',
-      avatar: '/assets/img/avatar-default.png',
+  // Проверка авторизации при загрузке приложения
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const profile = await UsersAPI.getProfile();
+        setUser(profile);
+      } catch (error) {
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    UsersAPI.saveProfile(email, profileData);
-    return null;
+    fetchProfile();
+  }, []);
+
+  // Регистрация
+  const register = async (email, password, username) => {
+    const data = await UsersAPI.register(username, email, password);
+    setUser(data.user);
   };
 
+  // Авторизация
+  const login = async (email, password) => {
+    const data = await UsersAPI.login(email, password);
+    setUser(data.user);
+  };
+
+  // Выход
   const logout = () => {
+    localStorage.removeItem('token');
     setUser(null);
   };
 
+  // Обновление профиля
+  const updateProfile = async (profileData) => {
+    const updatedProfile = await UsersAPI.updateProfile(profileData);
+    setUser(updatedProfile);
+  };
+
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, loading, register, login, logout, updateProfile }}>
       {children}
     </AuthContext.Provider>
   );
