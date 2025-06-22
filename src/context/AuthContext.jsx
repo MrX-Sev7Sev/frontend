@@ -7,14 +7,14 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Проверка авторизации при загрузке приложения
   useEffect(() => {
     const fetchProfile = async () => {
       try {
         const profile = await UsersAPI.getProfile();
         setUser(profile);
       } catch (error) {
-        setUser(null);
+        console.error('Auth error:', error);
+        localStorage.removeItem('token');
       } finally {
         setLoading(false);
       }
@@ -23,32 +23,33 @@ export const AuthProvider = ({ children }) => {
     fetchProfile();
   }, []);
 
-  // Регистрация
   const register = async (email, password, username) => {
-    const data = await UsersAPI.register(username, email, password);
-    setUser(data.user);
+    try {
+      const data = await UsersAPI.register(username, email, password);
+      setUser(data.user);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   };
 
-  // Авторизация
   const login = async (email, password) => {
-    const data = await UsersAPI.login(email, password);
-    setUser(data.user);
+    try {
+      const data = await UsersAPI.login(email, password);
+      setUser(data.user);
+      return { success: true };
+    } catch (error) {
+      return { success: false, error: error.message };
+    }
   };
 
-  // Выход
   const logout = () => {
     localStorage.removeItem('token');
     setUser(null);
   };
 
-  // Обновление профиля
-  const updateProfile = async (profileData) => {
-    const updatedProfile = await UsersAPI.updateProfile(profileData);
-    setUser(updatedProfile);
-  };
-
   return (
-    <AuthContext.Provider value={{ user, loading, register, login, logout, updateProfile }}>
+    <AuthContext.Provider value={{ user, loading, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
