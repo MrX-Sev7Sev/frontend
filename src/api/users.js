@@ -21,10 +21,15 @@ export const UsersAPI = {
   },
 
   getProfile: async () => {
-    const token = localStorage.getItem("token");
-    const response = await api.get("/users/me", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    return response.data;
+    const token = localStorage.getItem("token");  
+    try {
+      const response = await api.get("/users/me", {
+        headers: { Authorization: `Bearer ${token}` }  // Добавляем заголовок
+      });
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || error.message;
+    }
   },
+
 };
