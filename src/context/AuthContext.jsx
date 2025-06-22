@@ -13,13 +13,11 @@ export const AuthProvider = ({ children }) => {
         const profile = await UsersAPI.getProfile();
         setUser(profile);
       } catch (error) {
-        console.error('Auth error:', error);
-        localStorage.removeItem('token');
+        setUser(null);  // Тут можно добавить логирование console.error(error)
       } finally {
         setLoading(false);
       }
     };
-
     fetchProfile();
   }, []);
 
