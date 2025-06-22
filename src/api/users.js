@@ -17,7 +17,6 @@ export const UsersAPI = {
     const response = await api.get('/users/me');
     return response.data;
   },
-};
 
   // Обновление профиля пользователя
   updateProfile: async (profileData) => {
@@ -27,5 +26,5 @@ export const UsersAPI = {
     } catch (error) {
       throw error.response?.data || error.message;
     }
-  },
+  }
 };
